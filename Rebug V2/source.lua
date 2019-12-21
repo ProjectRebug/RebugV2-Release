@@ -382,7 +382,9 @@ NetWorks
 	local function CheckIfStringExists(str)
 		local i = 1
 		while util.NetworkIDToString(i) do
-			if util.NetworkIDToString(i) == str then return true end
+			if util.NetworkIDToString(i) == str then 
+                return true 
+            end
 			i = i + 1
 		end
 	end
