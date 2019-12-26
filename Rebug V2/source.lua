@@ -1035,7 +1035,7 @@ AntiCheat Detection
                             return false
                         end
                     end
-                },q
+                },
                 ["Cake Anti-Cheat (CAC)"] = {
                     desc = "One of the best anticheats ever created on gmod still bans kids for cheating after it \nwas removed from gmodstore in 2017. Pity it it was never made to detect backdoors.",
                     scan = function()
