@@ -38,7 +38,7 @@ This repo is listed with [GNU license](https://github.com/Void09/Login-Release/b
 ## Images
 
 #### Main Menu
-![Foo](https://i.imgur.com/uEXp2dj.png)
+![Foo](https://i.imgur.com/YWxagl3.png)
 #### Detections
 ![Foo](https://i.imgur.com/dkUJKdN.png)
 #### SoundBoard
