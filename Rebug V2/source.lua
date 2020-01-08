@@ -1247,7 +1247,7 @@ end)
                     end
                 },
                 ["Billys Admin Sits"] = {
-                    desc = "This addon is used for admins on servers to handle sits. It does however come with a screengrab \nwhich we are not sure if it can see rebug so be careful",
+                    desc = "This addon is used for admins on servers to handle sits. It does however come with a \nscreengrab which we are not sure if it can see rebug so be careful",
                     scan = function()
                         if file.Exists("gmodadminsuite/modules/adminsits/sv_adminsits.lua", "LUA") or file.Exists("gmodadminsuite/modules/adminsits/sh_sit_behaviour.lua", "LUA") then
                             return true
