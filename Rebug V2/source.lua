@@ -1051,9 +1051,9 @@ end)
                     scan = function()
                         if file.Exists("epstat.lua", "LUA") or file.Exists("autorun/!!bettersnte.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+
+                        return false
                     end
                 },
                 ["Cake Anti-Cheat (CAC)"] = {
@@ -1061,9 +1061,9 @@ end)
                     scan = function()
                         if _G.CAC then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Quack Anti-Cheat (QAC)"] = {
@@ -1071,9 +1071,9 @@ end)
                     scan = function()
                         if _G.QAC then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Simplac Anti-Cheat (SAC)"] = {
@@ -1081,9 +1081,9 @@ end)
                     scan = function()
                         if _G.simplicity then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Cardinal Anti-Cheat"] = {
@@ -1091,9 +1091,9 @@ end)
                     scan = function()
                         if file.Exists("sh_cardinal.lua","LUA") or file.Exists("client/cl_cardinal.lua","LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["CIB Anti-Exploit"] = {
@@ -1101,9 +1101,9 @@ end)
                     scan = function()
                         if file.Exists("cib/sh_config_cib.lua","LUA") or file.Exists("autorun/sh_start_cib.lua","LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Nyaaa Anti-Exploit"] = {
@@ -1111,19 +1111,19 @@ end)
                     scan = function()
                         if file.Exists("autorun/ab.lua","LUA") or file.Exists("autorun/client/ab.lua","LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
 				["Jenni Anti-Exploit"] = {
                     desc = "This is a worse version of SNTE, It would make 1 net string appear to those cheaters that have it in their list except rebug doesn't have 'anti_exploits_ban' \nin its list so no ban for you :)",
                     scan = function()
                         if file.Exists("autorun/client/cl_anti_exploits.lua","LUA") then
-                            return true
-                        else
-                            return false
+                             return true
                         end
+                        
+                        return false
                     end
                 },
 				["Telecomm Anti-Exploit"] = {
@@ -1131,9 +1131,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/client/cl_antinexploits.lua","LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["SNTE Anti-Exploit"] = {
@@ -1141,9 +1141,9 @@ end)
                     scan = function()
                         if ConVarExists("snte_ulxluarun") or file.Exists("autorun/!!bettersnte.lua", "LUA") or file.Exists("autorun/!coresource_snte.lua", "LUA") or istable(global_nets) then -- if BetterSNTE then makes present
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Modern Anti-Cheat"] = {
@@ -1151,9 +1151,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/client/!!!!!!!!!!!!!!!!!!!!!!aaaaaaaaaaa.lua", "LUA") or file.Exists("autorun/client/cl_mac.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Swift Anti-Cheat"] = {
@@ -1161,9 +1161,9 @@ end)
                     scan = function()
                         if file.Exists("swiftac.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Umbrella Anti-Exploit"] = {
@@ -1171,9 +1171,9 @@ end)
                     scan = function()
                         if file.Exists("umbrella.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Viper Anti-Exploit"] = {
@@ -1181,9 +1181,9 @@ end)
                     scan = function()
                         if file.Exists("cl_viperbdcheck.lua", "LUA") or file.Exists("sh_viperbdcheck.lua", "LUA") or file.Exists("autorun/cl_viper.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Raptor Anti-Exploit"] = {
@@ -1191,9 +1191,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/client/cl_rac.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["C0nw0nk Anti-Cheat"] = {
@@ -1201,9 +1201,9 @@ end)
                     scan = function() 
                         if file.Exists("autorun/send-lua-and-net-send.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Prop Protection (SPC)"] = {
@@ -1211,9 +1211,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/smartsauce_loader.lua", "LUA") or file.Exists("autorun/smartsauce/sv_main.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Spawn Protection (SZ)"] = {
@@ -1221,9 +1221,9 @@ end)
                     scan = function()
                         if file.Exists("sz_config.lua", "LUA") or file.Exists("autorun/autorun_safezones.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Screengrab Anti-Cheat"] = {
@@ -1231,9 +1231,9 @@ end)
                     scan = function()
                         if file.Exists("cl_screengrab.lua", "LUA") or file.Exists("autorun/sh_screengrab.lua", "LUA") or file.Exists("autorun/sh_screengrab_v2.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["BLogs Logging System"] = {
@@ -1241,9 +1241,9 @@ end)
                     scan = function()
                         if file.Exists("gmodadminsuite/modules/logging/cl_menu.lua", "LUA") or file.Exists("vgui/gas_logging_advanced_search_item.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["Billys Admin Sits"] = {
@@ -1251,9 +1251,9 @@ end)
                     scan = function()
                         if file.Exists("gmodadminsuite/modules/adminsits/sv_adminsits.lua", "LUA") or file.Exists("gmodadminsuite/modules/adminsits/sh_sit_behaviour.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["MLogs Logging System"] = {
@@ -1261,9 +1261,9 @@ end)
                     scan = function()
                         if file.Exists("mlib/lua/autorun/mlib.lua", "LUA") or file.Exists("mlogs2/lua/mlogs/config/cl_config", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["PLogs Logging System"] = {
@@ -1271,9 +1271,9 @@ end)
                     scan = function()
                         if file.Exists("plogs_cfg.lua", "LUA") or file.Exists("plogs_mysql_cfg.lua", "LUA") or file.Exists("autorun/plogs_init.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["AWarn2 Warning System"] = {
@@ -1281,9 +1281,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/sh_awarn.lua", "LUA") or file.Exists("autorun/sh_localization.lua", "LUA") or file.Exists("autorun/client/cl_awarn_newmenu.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["AWarn3 Warning System"] = {
@@ -1291,9 +1291,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/awarn3.lua", "LUA") or file.Exists("includes/awarn3_blacklists.lua", "LUA") or file.Exists("includes/awarn3_permissions.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
                 ["LUA Stealer (Void)"] = {
@@ -1301,9 +1301,9 @@ end)
                     scan = function()
                         if file.Exists("autorun/sh_fuckthissheet.lua", "LUA") then
                             return true
-                        else
-                            return false
                         end
+                        
+                        return false
                     end
                 },
             }
