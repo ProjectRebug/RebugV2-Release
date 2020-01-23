@@ -2446,6 +2446,12 @@ end)
             end)
         end)
 
+		rebug.AddButton("Blue ATM Interest", Bar1, function()
+			surface.PlaySound("buttons/button18.wav")
+			Derma_StringRequest("Blue ATM Interest", "How much money interest makes every 15min e.g 9999999", "", function(str)
+                noob.PostLua("BATM.MaxInterest =" .. str)
+            end)
+        end)
 
         rebug.AddButton("Bitminers2 Value", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
