@@ -801,12 +801,7 @@ end)
 
             rebug.AddButtonBIG("Earth Wind (Normal)", Bar7, function()
                 surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://httpsinfamousvoice1com.000webhostapp.com/08_Earth.mp3" .. "\" , \"mono\", function() end)]])")
-            end)
-
-            rebug.AddButtonBIG("DajaVu (Normal)", Bar7, function()
-                surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://httpsinfamousvoice1com.000webhostapp.com/daja.mp3" .. "\" , \"mono\", function() end)]])")
+                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://rvac.cc/log1n/sound/earth.mp3" .. "\" , \"mono\", function() end)]])")
             end)
 
             rebug.AddButtonBIG("Comethazine Walk (Normal)", Bar7, function()
@@ -816,17 +811,12 @@ end)
 
             rebug.AddButtonBIG("Fortnite Default Dance (EarRape)", Bar7, function()
                 surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://tewtewqwef.000webhostapp.com/FortniteDefaultDanceEARRAPE.mp3" .. "\" , \"mono\", function() end)]])")
+                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://rvac.cc/log1n/sound/default.mp3" .. "\" , \"mono\", function() end)]])")
             end)
 
             rebug.AddButtonBIG("LilPump DRose (EarRape)", Bar7, function()
                 surface.PlaySound("buttons/button18.wav")
                 noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://tewtewqwef.000webhostapp.com/LilPumDRoseEarrape.mp3" .. "\" , \"mono\", function() end)]])")
-            end)
-
-            rebug.AddButtonBIG("No Nonses (EarRape)", Bar7, function()
-                surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://tewtewqwef.000webhostapp.com/nononses.mp3" .. "\" , \"mono\", function() end)]])")
             end)
 
             rebug.AddButtonBIG("Penis (EarRape)", Bar7, function()
@@ -841,12 +831,12 @@ end)
 
             rebug.AddButtonBIG("RamRanch (EarRape)", Bar7, function()
                 surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://tewtewqwef.000webhostapp.com/RamRanch.mp3" .. "\" , \"mono\", function() end)]])")
+                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://rvac.cc/log1n/sound/ramranch.mp3" .. "\" , \"mono\", function() end)]])")
             end)
 
             rebug.AddButtonBIG("SovietNationalAnthem (EarRape)", Bar7, function()
                 surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://tewtewqwef.000webhostapp.com/SovietNationalAnthem.mp3" .. "\" , \"mono\", function() end)]])")
+                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://rvac.cc/log1n/soviet.mp3" .. "\" , \"mono\", function() end)]])")
             end)
 
             rebug.AddButtonBIG("Static (EarRape)", Bar7, function()
@@ -854,15 +844,6 @@ end)
                 noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://rvac.cc/log1n/sound/static.mp3" .. "\" , \"mono\", function() end)]])")
 			end)
 
-            rebug.AddButtonBIG("White Noise (EarRape)", Bar7, function()
-                surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://tewtewqwef.000webhostapp.com/whitenoise.mp3" .. "\" , \"mono\", function() end)]])")
-            end)
-
-            rebug.AddButtonBIG("Bot (EarRape)", Bar7, function()
-                surface.PlaySound("buttons/button18.wav")
-                noob.PostLua("BroadcastLua([[sound.PlayURL(\"" .. "https://httpsinfamousvoice1com.000webhostapp.com/Bot.mp3" .. "\" , \"mono\", function() end)]])")
-            end)
         end
 
 /*
@@ -3610,6 +3591,17 @@ end)
 				
 				]])
 			end)
+		end)
+		
+        rebug.AddButton("Give Ammo", Bar3, function()
+            surface.PlaySound("buttons/button18.wav")
+				noob.PostLua([[
+				
+					local ply = %s
+						for i=1,100 do
+						ply:GiveAmmo(10000, i, false)
+					end
+				]])
 		end)
 
         rebug.AddButton("M9K Nuke", Bar3, function()
