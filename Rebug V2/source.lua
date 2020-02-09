@@ -361,6 +361,7 @@ end)
             end
 			i = i + 1
 		end
+        return false
 	end
 
 	local function rndstr(len)
