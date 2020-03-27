@@ -22,11 +22,11 @@
 *   Note to the person using this, removing this
 *   text is in violation of the licence you agreed
 *   to by downloading.
-*   Copyright © ProjectRebug 2019
+*   Copyright © ProjectRebug 2020
 *   Licenced under © GNU licence here
 *   https://github.com/ProjectRebug/RebugV2-Release/blob/master/LICENSE
 *
-*   Project Rebug: 2016-2019
+*   Project Rebug: 2016-2020
 */
 
 surface.CreateFont("MenuFont", {
@@ -217,7 +217,7 @@ Color(255, 64, 0), "|   ||.---------------------------------------------.||   |\
 Color(255, 128, 0), "| o |||                 Rebug Cheats                ||| o |\n", 
 Color(255, 191, 0), "| _ |||---------------------------------------------||| _ |\n", 
 Color(255, 191, 0), "|(_)|||                 Version: 2.0                |||(_)|\n",
-Color(255, 255, 0), "|   |||               Date: 07.09.19                |||   |\n",
+Color(255, 255, 0), "|   |||                Date: 07.09.19               |||   |\n",
 Color(191, 255, 0), "|   |||---------------------------------------------|||   |\n", 
 Color(128, 255, 0), "|.-.|||                   Updates:                  |||.-.|\n", 
 Color(64, 255, 0), "| o |||    |SnteDetour| |Bd UI Update| |Cheat Menu| ||| o |\n", 
@@ -273,6 +273,7 @@ hook.Add( "InitPostEntity", "fpsbooster", function()
  		hook.Remove("PostDrawEffects", "RenderWidgets")
  		hook.Remove("PostDrawEffects", "RenderHalos")
 end)
+
 hook.Add("OnEntityCreated","WidgetInit",function(ent)
 	if ent:IsWidget() then
 		hook.Add( "PlayerTick", "TickWidgets", function( pl, mv ) widgets.PlayerTick( pl, mv ) end ) 
@@ -361,7 +362,6 @@ end)
             end
 			i = i + 1
 		end
-        return false
 	end
 
 	local function rndstr(len)
@@ -2491,8 +2491,10 @@ end)
 					ply:SetArmor(10000)
 				end,
 				})
-
-			]]) rprint('Job Command: /'..noobstr)
+				timer.Simple(0.2, function() ply:ConCommand("darkrp ]]..noobstr..[[") end)
+			]]) rprint('Job Command: /'..noobstr)	
+			
+			
 		end)
 
         rebug.AddButton("Cleanup Map", Bar1, function()
@@ -2628,6 +2630,21 @@ end)
 			
 			]])
 		end)
+
+        rebug.AddButton("Disable gAC", Bar1, function()
+            surface.PlaySound("buttons/button18.wav")
+            noob.PostLua([[
+			
+				if file.Exists('autorun/glorifiedanticheat.lua', 'LUA') then
+					_G.gAC = false
+					_G.config = false
+					_G.storage = false
+				else
+					rprint("gAC isn't present!")
+				end
+			
+			]])
+        end)
 
         rebug.AddButton("Disable Exit", Bar1, function()
             surface.PlaySound("buttons/button18.wav")
@@ -3395,7 +3412,7 @@ end)
 					me:Kill()
 				end
 
-				]])
+			]])
         end)
 
         rebug.AddButton("Co Host Menu", Bar3, function()
