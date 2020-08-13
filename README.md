@@ -9,6 +9,7 @@ The coding for Rebug v2 has made organised to give people a better understanding
 ![Foo](https://i.imgur.com/rlxFY4G.png)
 
 * ScreenGrab Protection
+* SNTE Detour
 * Stream Protection
 * Backdoor Features +100
 * SoundBoard - Custom URL
