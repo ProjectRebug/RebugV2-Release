@@ -26,7 +26,7 @@ To use rebug you can choose one of the methods below to active the script the mo
 * Open console and type 'qrextern rebug.lua'
 * Press the insert key to open/close
 
-#### DLL
+#### DLL ( METHOD BROKEN DONT FUCKING USE IT )
 
 * Place the folder 'rebug' anywhere you want
 * Load up Garry's mod and join any multiplayer server
